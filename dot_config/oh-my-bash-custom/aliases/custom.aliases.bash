@@ -1,0 +1,16 @@
+export GITHUB_USERNAME="PascalKont"
+alias chezmoi_setup='sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME'
+
+alias l='ls'
+alias la='ls -alh --color=auto'
+
+alias vim=nvim
+alias vi=vim
+alias v=vi
+
+alias aas='chezmoi apply; source ~/.bashrc'
+alias aliasconf='chezmoi edit ~/.config/oh-my-bash/custom/aliases/custom.aliases.bash; aas'
+alias swayconf='chezmoi edit ~/.config/sway/config; aas'
+alias ohsconf='chezmoi edit ~/.config/oh-my-bash/; aas'
+alias bashrc='chezmoi edit ~/.bashrc; chezmoi apply; aas'
+alias hello='echo hi'
