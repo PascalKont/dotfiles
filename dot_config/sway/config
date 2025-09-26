@@ -309,7 +309,7 @@ exec kanshi
 #
 exec waybar_timer serve
 exec waybar
-exec_always --no-startup-id exec wlsunset -l 49 -L 8.4
+#exec_always --no-startup-id exec wlsunset -l 49 -L 8.4
 
 # Startup Software
 exec flatpak run com.github.IsmaelMartinez.teams_for_linux

@@ -1,0 +1,143 @@
+{
+  "layer": "top",
+  "height": 26,
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-center": ["sway/window"],
+  "modules-right": ["custom/media", "custom/timer", "pulseaudio", "custom/vpn", "network", "backlight", "battery", "clock"],
+  "sway/workspaces": {
+      "disable-scroll": true,
+      "all-outputs": true,
+      "format": "{icon}",
+      "format-icons": {
+          "1": "1 <span font='16' rise='-3000'>󰈹</span>",
+          "2": "2 <span font='16' rise='-3000'></span>",
+          "3": "3 <span font='16' rise='-3000'>󰍡</span>",
+          "4": "4 <span font='16' rise='-3000'>󰓇</span>",
+          "5": "5 <span font='16' rise='-3000'>󰌢</span>",
+          "6": "6 <span font='16' rise='-3000'></span>",
+          "7": "7 <span font='16' rise='-3000'></span>",
+          "8": "8 <span font='16' rise='-3000'></span>",
+          "9": "9 <span font='16' rise='-3000'></span>",
+          "10": "10 <span font='16' rise='-3000'></span>"
+      }
+  },
+  "sway/mode": {
+      "format": "<span style=\"italic\">{}</span>"
+  },
+  "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+          "activated": "",
+          "deactivated": ""
+      }
+  },
+  "clock": {
+      "tooltip-format": "<big>{:%d %B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+      "format-alt": "{:%Y-%m-%d}"
+  },
+  "backlight": {
+      "format": "{percent}% <span font='15' rise='-2100'>{icon}</span>",
+      "format-icons": ["", "", "", "", "󰽢"]
+  },
+  "battery": {
+      "bat": "BAT0",
+      "states": {
+          "good": 95,
+          "warning": 30,
+          "critical": 15
+      },
+      // Thin Space Character
+      // https://www.compart.com/en/unicode/U+2009
+      "format": "{capacity}% {icon}",
+      "format-charging": "{capacity}% 󰂄",
+      //"format-alt": "{time} {icon}",
+      "format-plugged": "{capacity}% {icon} ",
+      // "format-good": "",
+      "format-full": "100% 󰁹",
+      "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"],
+	    "menu": "on-click",
+	    "menu-file": "$HOME/.config/waybar/menus/power_menu.xml", // Menu file in resources folder
+	    "menu-actions": {
+		  "shutdown": "shutdown now",
+		  "reboot": "reboot now",
+		  "suspend": "systemctl suspend",
+		  "hibernate": "systemctl hibernate",
+    }
+  },
+  "network": {
+    "interface": "wlp9s0f0",
+  	"format": "<span font='18' rise='0'>{icon}</span>",
+	  "format-ethernet": "{ifname} 󱂺 {icon}",
+    //"format-wifi": "{essid} ",
+    //"format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "<span font='18'>󰤮</span>",
+  	"format-alt": "{essid} <span font='18' rise='-2900'>{icon}</span>",
+    //"format-alt": "{essid} <span font='18' rise='-3300'>{icon}</span>",
+    "tooltip-format": "{ifname}: {essid}\nip: {ipaddr}/{cidr}",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+  },
+  "pulseaudio": {
+      "scroll-step": 0,
+      "format": "<span font='16' rise=''>{icon} {volume}{format_source}</span>",
+      "format-muted": "<span font='16' rise=''>󰝟 {format_source}</span>",
+      "format-bluetooth": "<span font='16' rise=''>{icon} {volume}{format_source}</span>",
+      "format-bluetooth-muted": "<span font='16' rise=''>{icon} {format_source}</span>",
+      "format-source": "    󰍬 {volume}",
+      "format-source-muted": "󰍭",
+      "format-icons": {
+          "headphone": "",
+          "hands-free": "",
+          "headset": "",
+          "phone": "",
+          "portable": "",
+          "car": "",
+          "default": ["󰖁", "󰕿", "󰖀", "󰕾"]
+      },
+      //"on-click": "pavucontrol",
+      "on-click": "~/.config/waybar/scripts/audio_right_click.py",
+      "on-click-middle": "wpctl set-mute @DEFAULT_SINK@ toggle",
+      "on-click-right": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
+      //"on-click-right": "~/.config/waybar/scripts/audio_right_click.py",
+      "on-scroll-up": "wpctl set-volume @DEFAULT_SINK@ 1%+",
+      "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 1%-",
+  },
+  "custom/vpn": {
+      "format": "<span font='12'>{icon}</span>",
+      "format-icons": ["󰌾", "󱙱"],
+      "exec": "ip l sh tun0 2>/dev/null",
+      "return-type": "bool",
+      "interval": 2
+  },
+  "custom/timer": {
+    "exec": "waybar_timer hook",
+    "exec-on-event": true,
+    "interval": "5",
+    "return-type": "json",
+    "format": "{icon} {0}",
+    "format-icons": {
+        "standby": "set Timer:",
+        "running": "Timer running:",
+        "paused": "Timer paused:"
+    },
+    "on-click": "waybar_timer new 25 'notify-send -a \"Waybar Timer\" -u critical \"Timer expired\"'",
+    "on-click-middle": "waybar_timer cancel",
+    "on-click-right": "waybar_timer togglepause",
+    "on-scroll-up": "waybar_timer increase 60 || waybar_timer new 1 'notify-send -a \"Waybar Timer\" -u critical \"Timer expired\"'",
+    "on-scroll-down": "waybar_timer decrease 60"
+  },
+  "custom/media": {
+    "format": "{icon} {text}",
+    "return-type": "json",
+    "max-length": 40,
+    "format-icons": {
+        "spotify": "",
+        "default": "🎜"
+    },
+    "escape": true,
+    "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null", // Script in resources folder
+    //"exec": "$HOME/.config/waybar/scripts/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+  },
+}
