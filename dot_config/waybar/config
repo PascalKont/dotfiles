@@ -32,8 +32,8 @@
       }
   },
   "clock": {
+      "format": "{:%d.%m.%Y %H:%M}",
       "tooltip-format": "<big>{:%d %B %Y}</big>\n<tt><small>{calendar}</small></tt>",
-      "format-alt": "{:%Y-%m-%d}"
   },
   "backlight": {
       "format": "{percent}% <span font='15' rise='-2100'>{icon}</span>",
