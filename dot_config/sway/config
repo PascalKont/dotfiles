@@ -308,7 +308,8 @@ exec kanshi
 # Status Bar:
 #
 exec waybar_timer serve
-exec_always pkill waybar; waybar
+#exec_always /bin/sh -c 'touch $HOME/swaytouch && pkill -x waybar && waybar'
+exec waybar
 #exec_always --no-startup-id exec wlsunset -l 49 -L 8.4
 
 # Startup Software

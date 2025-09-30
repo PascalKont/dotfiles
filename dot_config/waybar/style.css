@@ -78,6 +78,7 @@ window#waybar.hidden {
 }
 
 
+#custom-bluetooth-power,
 #custom-vpn,
 #pulseaudio,
 #network,
@@ -87,6 +88,7 @@ window#waybar.hidden {
   background: #ebdbb2;
 }
 
+#custom-bluetooth-power:hover,
 #custom-vpn:hover,
 #pulseaudio:hover,
 #network:hover,
@@ -106,6 +108,10 @@ menu {
 menuitem:hover {
   background: #dbcba2;
   color: #000000;
+}
+
+#custom-bluetooth-power {
+  font-size: 20px;
 }
 
 #battery.critical:not(.charging) {
