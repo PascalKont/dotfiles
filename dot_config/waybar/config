@@ -3,7 +3,7 @@
   "height": 26,
   "modules-left": ["sway/workspaces", "sway/mode"],
   "modules-center": ["sway/window"],
-  "modules-right": ["custom/media", "custom/timer", "pulseaudio", "custom/vpn", "network", "backlight", "battery", "clock"],
+  "modules-right": ["custom/timer", "pulseaudio", "custom/vpn", "network", "backlight", "custom/bluetooth-power", "battery", "clock"],
   "sway/workspaces": {
       "disable-scroll": true,
       "all-outputs": true,
@@ -66,23 +66,23 @@
   },
   "network": {
     "interface": "wlp9s0f0",
-  	"format": "<span font='18' rise='0'>{icon}</span>",
+  	"format": "<span font='18' rise='-2100'>{icon}</span>",
 	  "format-ethernet": "{ifname} 󱂺 {icon}",
     //"format-wifi": "{essid} ",
     //"format-linked": "{ifname} (No IP) ",
     "format-disconnected": "<span font='18'>󰤮</span>",
-  	"format-alt": "{essid} <span font='18' rise='-2900'>{icon}</span>",
-    //"format-alt": "{essid} <span font='18' rise='-3300'>{icon}</span>",
+  	"format-alt": "{essid} <span font='18' rise='-2100'>{icon}</span>",
+    //"format-alt": "{essid} <span font='18' rise='-2100'>{icon}</span>",
     "tooltip-format": "{ifname}: {essid}\nip: {ipaddr}/{cidr}",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
   },
   "pulseaudio": {
       "scroll-step": 0,
-      "format": "<span font='16' rise=''>{icon} {volume}{format_source}</span>",
-      "format-muted": "<span font='16' rise=''>󰝟 {format_source}</span>",
-      "format-bluetooth": "<span font='16' rise=''>{icon} {volume}{format_source}</span>",
-      "format-bluetooth-muted": "<span font='16' rise=''>{icon} {format_source}</span>",
-      "format-source": "    󰍬 {volume}",
+      "format": "<span font='14' rise='-2100'>{icon}</span>\u2009{volume}{format_source}",
+      "format-muted": "<span font='14' rise='-2100'>󰝟</span>\u2009{format_source}",
+      "format-bluetooth": "<span font='14' rise='-2100'>{icon}</span>\u2009{volume}{format_source}",
+      "format-bluetooth-muted": "<span font='14' rise='-2100'>{icon}</span>\u2009{format_source}",
+      "format-source": "<span font='14' rise='0'> 󰍬</span>\u2009{volume}",
       "format-source-muted": "󰍭",
       "format-icons": {
           "headphone": "",
@@ -111,13 +111,13 @@
   "custom/timer": {
     "exec": "waybar_timer hook",
     "exec-on-event": true,
-    "interval": "5",
+    "interval": "10",
     "return-type": "json",
-    "format": "{icon} {0}",
+    "format": "<span font='14' rise='-2100'>{icon}</span> {0}",
     "format-icons": {
-        "standby": "set Timer:",
-        "running": "Timer running:",
-        "paused": "Timer paused:"
+        "standby": "󱎫",
+        "running": "󱫠",
+        "paused": "󱫞",
     },
     "on-click": "waybar_timer new 25 'notify-send -a \"Waybar Timer\" -u critical \"Timer expired\"'",
     "on-click-middle": "waybar_timer cancel",
@@ -140,4 +140,15 @@
     "on-scroll-up": "playerctl next",
     "on-scroll-down": "playerctl previous"
   },
+  "custom/bluetooth-power": {
+    "format": "{icon}{text}",
+    "format-icons": {
+      "yes": "<span font='13'>󰂯</span>",
+      "no": "<span font='13'>󰂲</span>",
+      "default": "",
+    },
+    "return-type": "json",
+    "exec": "$HOME/.config/waybar/scripts/bluetooth-power.py",
+    "restart-interval": "5",
+  }
 }
