@@ -115,7 +115,7 @@ return {
             "Struct",
             "Trait",
           },
-          markdown = false,
+          markdown = true,
           help = false,
           -- you can specify a different filter for each filetype
           lua = {
