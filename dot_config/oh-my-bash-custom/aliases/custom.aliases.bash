@@ -8,7 +8,15 @@ alias la='ls -alh --color=auto'
 
 alias vim=nvim
 alias vi=vim
-alias v=vi
+#alias v=vi
+
+v() {
+  if [[ $1 == "" ]]; then
+    vi .
+  else
+    vi "$@"
+  fi
+}
 
 alias aas='chezmoi apply; source ~/.bashrc'
 alias aliasconf='chezmoi edit ~/.config/oh-my-bash-custom/aliases/custom.aliases.bash; aas'

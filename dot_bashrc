@@ -167,3 +167,6 @@ fi
 # Example aliases
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
+
+export PATH="$PATH:$HOME/.local/bin:$HOME/.local/share/nvim/mason/bin"
+#export PATH="$PATH:$HOME/.local/bin"

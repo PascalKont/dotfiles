@@ -1,6 +1,8 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
+require("config.utf-8")
+
 local opt = vim.opt
 
 -- TAB/INDENT ----------------------------------------------------------------
@@ -19,18 +21,18 @@ opt.hlsearch = false
 
 -- APPEARANCE ----------------------------------------------------------------
 opt.number = true
-opt.relativenumber = false
+opt.relativenumber = true
 opt.termguicolors = true
 opt.colorcolumn = "100"
 opt.signcolumn = "yes"
 opt.cmdheight = 1
 opt.scrolloff = 10
-opt.completeopt = "menuone,noinsert,noselect"
+opt.completeopt = "fuzzy,menuone,noinsert,noselect,popup"
 
 -- MISC ----------------------------------------------------------------------
 opt.hidden = true
 opt.errorbells = false
-opt.swapfile = false
+opt.swapfile = true
 opt.backup = false
 opt.undodir = vim.fn.expand("~/.vim/undodir")
 opt.undofile = true
@@ -44,11 +46,11 @@ opt.encoding = "UTF-8"
 -- APPEND --------------------------------------------------------------------
 opt.mouse:append("a")
 opt.iskeyword:append("-")
-opt.clipboard:append("unnamedplus")
+-- opt.clipboard:append("unnamedplus")
 
--- ANSIBLE/YAML --------------------------------------------------------------
-vim.filetype.add({
-  extension = {
-    yml = "yaml.ansible",
-  },
-})
+-- -- ANSIBLE/YAML --------------------------------------------------------------
+-- vim.filetype.add({
+--   extension = {
+--     yml = "yaml.ansible",
+--   },
+-- })

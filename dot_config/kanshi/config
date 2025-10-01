@@ -58,6 +58,18 @@ output 'NEC Corporation E245WMi 04501267TB' {
     alias $WB1_left
   }
 
+output 'NEC Corporation EA243WM 2Z132809NB' {
+    mode 1920x1200@59.950
+    position 1440,0
+    alias $WB2_left
+  }
+
+output 'NEC Corporation E243WMi 76310374NB' {
+    mode 1920x1080@60.000
+    position 3360,0
+    alias $WB2_right
+  }
+
 # Mobile
 profile Mobile {
     output $INTERNAL enable
@@ -107,3 +119,11 @@ profile WB1 {
     output $WB1_right enable
     output $INTERNAL position 3840,400 enable
   }
+
+# WB2
+profile WB2 {
+    output $WB2_left enable
+    output $WB2_right enable
+    output $INTERNAL position 0,400 enable
+  }
+
