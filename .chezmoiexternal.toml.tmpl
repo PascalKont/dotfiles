@@ -1,3 +1,6 @@
+{{ if eq .hosttype "full" "work" "private" }}
+    {{ if eq .chezmoi.os "linux" }}
+
 [".config/oh-my-bash"]
   type = "git-repo"
   url = "https://github.com/ohmybash/oh-my-bash.git"
@@ -7,3 +10,19 @@
   type = "file"
   url = "https://raw.githubusercontent.com/lincheney/fzf-tab-completion/refs/heads/master/bash/fzf-bash-completion.sh"
   refreshPeriod = "168h"
+
+[".local/lib/nvim.appimage"]
+    type = "file"
+        {{ if eq .chezmoi.arch "amd64" }}
+    url = "https://github.com/neovim/neovim/releases/download/v0.11.4/nvim-linux-x86_64.appimage"
+        {{ end }}
+    refreshPeriod = "672h"
+
+[".local/share/fonts/0xproto"]
+  type = "archive"
+  url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/0xProto.zip"
+  exact = true
+  refreshPeriod = "672h"
+  include = ["*.ttf"]
+    {{ end }}
+{{ end }}

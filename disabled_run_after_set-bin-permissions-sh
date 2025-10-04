@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# https://unix.stackexchange.com/questions/345014/bash-script-to-recursively-obtain-file-and-directory-permissions-compare-them-t
+
+path=$HOME/.local/bin
+
+for file in $(find $path -type f)
+do
+    if [[ $(stat -c '%a' $file) != *755 ]]
+    then
+	chmod 755 $file
+        #echo "$file permissions are wrong"
+    #else
+        #echo "$file permissions are correct"
+    fi
+done
+
+for dir in $(find $path -type d)
+do
+    if [[ $(stat -c '%a' $dir) != *755 ]]
+    then
+	chmod 755 $file
+        #echo "$path directory permissions are wrong"
+    #else
+        #echo "$path directory permissions are correct"
+    fi
+done
+
+#chmod 755 -R "$HOME/.local/bin"
