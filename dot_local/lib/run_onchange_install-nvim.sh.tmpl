@@ -1,0 +1,17 @@
+{{- if eq .hosttype "work" "private" -}}
+    {{- if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+{{ $path := joinPath .chezmoi.homeDir ".local/lib/nvim.appimage" -}}
+# nvim hash: {{ include $path | sha256sum }}
+
+path=$HOME/.local/bin/nvim
+echo "Installing nvim in $path"
+
+if [[ $(command -v $path) ]]; then
+  rm $path
+fi
+cp $HOME/.local/lib/nvim.appimage $path
+chmod 744 $path
+{{ end -}}
+{{- end -}}
+

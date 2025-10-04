@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Check if Git is already installed
 if command -v git &>/dev/null; then
-  echo "Git is already installed."
+  #echo "Git is already installed."
   exit 0
 fi
 

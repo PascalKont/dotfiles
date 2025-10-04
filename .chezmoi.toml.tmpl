@@ -3,14 +3,14 @@ encryption = "gpg"
     recipient = "chezmoi-pkontsch"
 
 {{ $path := joinPath .chezmoi.homeDir ".config/chezmoi-hosttype.sh" }}
-{{ $stat := lstat $path }}
-{{ $hosttype := "minimal" }}
-{{ if and $stat (eq $stat.type "file") }}
-  {{ $hosttype = output $path }}
-{{ else }}
-  {{ $choices := list "minimal" "full" "work" "private" }}
-  {{ $hosttype = promptChoiceOnce . "hosttype" "What type of host are you on" $choices $hosttype }}
-{{ end }}
+{{- $stat := lstat $path }}
+{{- $hosttype := "minimal" }}
+{{- if and $stat (eq $stat.type "file") }}
+  {{- $hosttype = output $path }}
+{{- else }}
+  {{- $choices := list "minimal" "full" "work" "private" }}
+  {{- $hosttype = promptChoiceOnce . "hosttype" "What type of host are you on" $choices $hosttype }}
+{{- end }}
 
 [data]
     hosttype = {{ $hosttype | quote }}

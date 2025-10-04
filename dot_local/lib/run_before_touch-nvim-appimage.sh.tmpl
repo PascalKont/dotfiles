@@ -1,0 +1,6 @@
+{{- if eq .hosttype "work" "private" -}}
+    {{- if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+touch $HOME/.local/lib/nvim.appimage
+{{ end -}}
+{{- end -}}
