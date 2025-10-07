@@ -24,6 +24,15 @@
   exact = true
   refreshPeriod = "672h"
   include = ["*.ttf"]
+
+[".local/lib/autotiling"]
+  type = "archive"
+  url = "https://github.com/nwg-piotr/autotiling/archive/refs/tags/v1.9.3.zip"
+  stripComponents = 2
+  exact = true
+  refreshPeriod = "672h"
+  include = ["**/main.py"]
+  
     {{ end }}
 {{ end }}
 

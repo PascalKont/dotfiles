@@ -1,0 +1,23 @@
+{{- if eq .hosttype "work" "private" }}
+{{- if eq .chezmoi.os "linux" -}}
+#!/bin/env bash
+
+package='python3-i3ipc'
+min_version='2.0.1'
+
+result=$(python -c '
+try:
+  from i3ipc import __version__ as v
+except ModuleNotFoundError:
+  v = "ModuleNotFoundError"
+print(v)
+')
+
+if [[ ${result} == "ModuleNotFoundError" ]]; then
+  sudo dnf install "${package}"
+elif [[ "${result//./}" -lt "${min_version//./}" ]]; then
+  sudo dnf install "${package}"
+fi
+
+{{- end }}
+{{- end }}
