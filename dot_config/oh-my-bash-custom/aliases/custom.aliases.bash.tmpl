@@ -20,9 +20,12 @@ v() {
   fi
 }
 
-alias aas='chezmoi apply; source ~/.bashrc'
-alias aliasconf='chezmoi edit ~/.config/oh-my-bash-custom/aliases/custom.aliases.bash; aas'
-alias swayconf='chezmoi edit ~/.config/sway/config; aas'
-alias ohsconf='chezmoi edit ~/.config/oh-my-bash/; aas'
-alias bashrc='chezmoi edit ~/.bashrc; chezmoi apply; aas'
-alias hello='echo hi'
+alias czap='chezmoi apply'
+alias aliasconf='chezmoi edit --apply ~/.config/oh-my-bash-custom/aliases/custom.aliases.bash; src'
+alias swayconf='chezmoi edit --apply ~/.config/sway/config; src'
+alias ohsconf='chezmoi edit --apply ~/.config/oh-my-bash/; src'
+alias bashrc='chezmoi edit --apply ~/.bashrc; src'
+
+alias tre='/usr/bin/tree -pugAC -L 2'
+alias tree='/usr/bin/tree -pugAC -L 4'
+alias treee='/usr/bin/tree -pugAC'
