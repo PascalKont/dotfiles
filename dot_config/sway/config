@@ -1,19 +1,12 @@
 # config File for sway
 #
 #
-# Ansible managed
-#
-#
 # Read `man 5 sway` for a complete reference.
 
-### Variables
-
 #
-# Theme
+# automatic output configuration:
 #
-set $bg_color "#282828"
-set $fg_color "#ebdbb2"
-set $focus_color "#3c3836"
+exec_always kanshi
 
 #
 # Logo key.
@@ -33,7 +26,7 @@ set $term foot
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu  wofi
+set $menu wofi
 
 include /etc/sway/config-vars.d/*
 
@@ -42,7 +35,13 @@ focus_follows_mouse yes
 # mouse always follows focus
 mouse_warping container
 
+#
 # Theme
+#
+set $bg_color "#282828"
+set $fg_color "#ebdbb2"
+set $focus_color "#3c3836"
+
 default_border pixel 3
 gaps outer 0
 gaps inner 4
@@ -62,9 +61,6 @@ output * bg /home/pkontsch/code/koalav2-dotfiles/pc_gruvbox_nologo.png fill
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-workspace 0
-#rename workspace 0 to "Teams"
-for_window [class="com.github.IsmaelMartinez.teams_for_linux"] move to workspace "Teams"
 
 ### Idle configuration
 #
@@ -166,36 +162,43 @@ input type:keyboard {
 #
 # Workspaces:
 #
+    set $ws0 0 teams
+    workspace $ws0 output eDP-1
 
+    set $ws1 1 outlook
+    workspace $ws1 output eDP-1
+
+    # dynamically asign workspaces to displays, left to right
+    exec_always "$$HOME/.config/sway/set_output_vars.sh"
 
     # Switch to workspace
-    bindsym $mod+0 workspace number 0
-    bindsym $mod+1 workspace number 1
-    bindsym $mod+2 workspace number 2
-    bindsym $mod+3 workspace number 3
-    bindsym $mod+4 workspace number 4
-    bindsym $mod+5 workspace number 5
-    bindsym $mod+6 workspace number 6
-    bindsym $mod+7 workspace number 7
-    bindsym $mod+8 workspace number 8
-    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace $$ws0
+    bindsym $mod+1 workspace $$ws1
+    bindsym $mod+2 workspace 2
+    bindsym $mod+3 workspace 3
+    bindsym $mod+4 workspace 4
+    bindsym $mod+5 workspace 5
+    bindsym $mod+6 workspace 6
+    bindsym $mod+7 workspace 7
+    bindsym $mod+8 workspace 8
+    bindsym $mod+9 workspace 9
     # Move focused container to workspace
-    bindsym $mod+Shift+0 move container to workspace number 0
-    bindsym $mod+Shift+1 move container to workspace number 1
-    bindsym $mod+Shift+2 move container to workspace number 2
-    bindsym $mod+Shift+3 move container to workspace number 3
-    bindsym $mod+Shift+4 move container to workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5
-    bindsym $mod+Shift+6 move container to workspace number 6
-    bindsym $mod+Shift+7 move container to workspace number 7
-    bindsym $mod+Shift+8 move container to workspace number 8
-    bindsym $mod+Shift+9 move container to workspace number 9
+    bindsym $mod+Shift+0 move container to workspace $$ws0
+    bindsym $mod+Shift+1 move container to workspace $$ws1
+    bindsym $mod+Shift+2 move container to workspace 2
+    bindsym $mod+Shift+3 move container to workspace 3
+    bindsym $mod+Shift+4 move container to workspace 4
+    bindsym $mod+Shift+5 move container to workspace 5
+    bindsym $mod+Shift+6 move container to workspace 6
+    bindsym $mod+Shift+7 move container to workspace 7
+    bindsym $mod+Shift+8 move container to workspace 8
+    bindsym $mod+Shift+9 move container to workspace 9
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 0-9 as the default.
 
     # dynamic workspaces
     # https://pypi.org/project/sway-dynamic-names/
-    exec_always --no-startup-id exec /home/pkontsch/.config/sway/venv/bin/sway-dynamic-names
+    #exec_always --no-startup-id exec /home/pkontsch/.config/sway/venv/bin/sway-dynamic-names
 #
 # Layout stuff:
 #
@@ -241,16 +244,16 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym $left resize shrink width 20px
+    bindsym $down resize grow height 20px
+    bindsym $up resize shrink height 20px
+    bindsym $right resize grow width 20px
 
     # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym Left resize shrink width 20px
+    bindsym Down resize grow height 20px
+    bindsym Up resize shrink height 20px
+    bindsym Right resize grow width 20px
 
     # Return to default mode
     bindsym Return mode "default"
@@ -299,20 +302,34 @@ bindsym Ctrl+Backspace exec wtype -M ctrl -k Delete
 
 # Register additional keybindings
 
-#
-# automatic output configuration:
-#
-exec kanshi
 
 #
-# Status Bar:
+# Startup Software:
 #
+
+# Status Bar:
 exec waybar_timer serve
 #exec_always /bin/sh -c 'touch $HOME/swaytouch && pkill -x waybar && waybar'
 exec waybar
 #exec_always --no-startup-id exec wlsunset -l 49 -L 8.4
 
-# Startup Software
-exec flatpak run com.github.IsmaelMartinez.teams_for_linux
+# Autotiling
+exec_always 'python $$HOME/.local/lib/autotiling/main.py'
+
+# 1Password
+exec_always 'pgrep 1password &>/dev/null || 1password'
+for_window [class="1Password"] \
+  move to scratchpad \
+  scratchpad show
+
+# Microsoft Shit:
+# Teams
+#exec flatpak run com.github.IsmaelMartinez.teams_for_linux
+exec_always 'swaymsg -t get_tree | grep chrome-cifhb &>/dev/null || gtk-launch chrome-cifhbcnohmdccbgoicgdjpfamggdegmo-Default'
+assign [app_id="chrome-cifhbcnohmdccbgoicgdjpfamggdegmo-Default"] workspace "$ws0"
+
+# Outlook
+exec_always 'swaymsg -t get_tree | grep chrome-faolna &>/dev/null || gtk-launch chrome-faolnafnngnfdaknnbpnkhgohbobgegn-Default'
+assign [app_id="chrome-faolnafnngnfdaknnbpnkhgohbobgegn-Default"] workspace "$ws1"
 
 include /etc/sway/config.d/*
