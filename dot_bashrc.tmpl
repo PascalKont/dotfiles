@@ -15,6 +15,8 @@ fi
 eval $(cat /tmp/ssh-agent.eval)
     {{- end }}
 
+# Personal path
+export PATH="$PATH:$HOME/.local/bin"
 # Path to your oh-my-bash installation.
 export OSH="$HOME/.config/oh-my-bash"
 
@@ -131,6 +133,7 @@ plugins=(
   bash-preexec
   chezmoi
   setup_chezmoi
+  fzf-bash-completion
 )
 
 # Which plugins would you like to conditionally load? (plugins can be found in ~/.oh-my-bash/plugins/*)
@@ -161,20 +164,5 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-bash libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-bash
-# users are encouraged to define aliases within the OSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias bashconfig="mate ~/.bashrc"
-# alias ohmybash="mate ~/.oh-my-bash"
-  {{ end -}}
+  {{- end -}}
 {{- end -}}

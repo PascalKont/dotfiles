@@ -1,3 +1,4 @@
+eval "$(fzf --bash)"
 source $OSH-custom/plugins/fzf-bash-completion/fzf-bash-completion.sh
 source $OSH-custom/plugins/fzf-bash-completion/fzf-theme.sh
 
