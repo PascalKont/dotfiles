@@ -5,6 +5,7 @@ packages=(
   1password-cli
   fzf
   htop
+  lsd       # better ls
   hyprland  # the compositor
   hyprpaper # wallpaper
   hypridle  # idle detection and tooling
