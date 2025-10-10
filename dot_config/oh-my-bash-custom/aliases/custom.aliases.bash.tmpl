@@ -4,8 +4,9 @@ export GITHUB_USERNAME="PascalKont"
 alias setup_epel='sudo subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms && sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm'
 
 alias ls='lsd'
-alias la='ls -alh --color=auto'
-alias l='la'
+alias l='ls --size short --total-size -alhg'
+alias la='l --tree --depth 2'
+alias laa='l --tree --depth 5'
 
 if command -v nvim &>/dev/null; then
 	alias vim=nvim
