@@ -79,8 +79,8 @@ profile Mobile {
 profile Home {
     output $INTERNAL position 0,900 enable
     output $HOME enable
-    exec swaymsg workspace 0, move workspace to output '"Samsung Display Corp. 0x419F Unknown"'
-    exec swaymsg workspace 1, move workspace to output '"Ancor Communications Inc ROG PG348Q G9LMQS137390"'
+#    exec swaymsg workspace 0, move workspace to output '"Samsung Display Corp. 0x419F Unknown"'
+#    exec swaymsg workspace 1, move workspace to output '"Ancor Communications Inc ROG PG348Q G9LMQS137390"'
   }
 
 # MUC1, hinten links mittig
@@ -88,9 +88,9 @@ profile MUC1 {
     output $MUC1_left enable
     output $MUC1_right enable
     output $INTERNAL enable
-    exec swaymsg workspace 0, move workspace to output '"Samsung Display Corp. 0x419F Unknown"'
-    exec swaymsg workspace 1, move workspace to output '"NEC Corporation E243F 25601651HB"'
-    exec swaymsg workspace 2, move workspace to output '"NEC Corporation E243F 25601685HB"'
+#    exec swaymsg workspace 0, move workspace to output '"Samsung Display Corp. 0x419F Unknown"'
+#    exec swaymsg workspace 1, move workspace to output '"NEC Corporation E243F 25601651HB"'
+#    exec swaymsg workspace 2, move workspace to output '"NEC Corporation E243F 25601685HB"'
   }
 
 # MUC_WC
@@ -108,9 +108,9 @@ profile MUC2 {
     output $MUC2_left enable
     output $MUC2_right enable
     output $INTERNAL position 3840,800 enable
-    exec swaymsg workspace 0, move workspace to output '"NEC Corporation E243F 25601662HB"'
-    exec swaymsg workspace 1, move workspace to output '"NEC Corporation E243F 25601668HB"'
-    exec swaymsg workspace 2, move workspace to output '"Samsung Display Corp. 0x419F Unknown"'
+#    exec swaymsg workspace 0, move workspace to output '"NEC Corporation E243F 25601662HB"'
+#    exec swaymsg workspace 1, move workspace to output '"NEC Corporation E243F 25601668HB"'
+#    exec swaymsg workspace 2, move workspace to output '"Samsung Display Corp. 0x419F Unknown"'
   }
 
 # WB1
