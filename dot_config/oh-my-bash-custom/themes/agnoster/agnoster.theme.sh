@@ -333,7 +333,7 @@ function prompt_virtualenv {
     # corresponds to the version number.
     local VENV_VERSION=$(awk '{print $NF}' <<<"$VERSION_OUTPUT")
 
-    prompt_segment cyan white "[v] ${VIRTUAL_ENV_PROMPT:+$VIRTUAL_ENV_PROMPT }$(basename "$VENV_VERSION")"
+    prompt_segment cyan black "[v] ${VIRTUAL_ENV_PROMPT:+$VIRTUAL_ENV_PROMPT }$(basename "$VENV_VERSION")"
   fi
 }
 
@@ -352,9 +352,9 @@ function prompt_pyenv {
       if [[ -d $PYENV_VIRTUAL_ENV ]]; then
         local VERSION_OUTPUT=$("$PYENV_VIRTUAL_ENV"/bin/python --version 2>&1)
         local PYENV_VENV_VERSION=$(awk '{print $NF}' <<<"$VERSION_OUTPUT")
-        prompt_segment cyan white "[$PYENV_VERSION] $(basename "$PYENV_VENV_VERSION")"
+        prompt_segment cyan black "[$PYENV_VERSION] $(basename "$PYENV_VENV_VERSION")"
       else
-        prompt_segment cyan white "$PYENV_VERSION"
+        prompt_segment cyan black "$PYENV_VERSION"
       fi
     fi
   fi
@@ -367,14 +367,14 @@ function prompt_condaenv {
       CONDA_PROMPT_MODIFIER=$(basename "$CONDA_PREFIX")
     fi
     local CONDA_PYTHON_VERSION=$("$CONDA_PREFIX"/bin/python -c 'import platform;print(platform.python_version())')
-    prompt_segment cyan white "[c] $CONDA_PROMPT_MODIFIER $CONDA_PYTHON_VERSION"
+    prompt_segment cyan black "[c] $CONDA_PROMPT_MODIFIER $CONDA_PYTHON_VERSION"
   fi
 }
 
 ### chezmoi shell prompt
 function prompt_chezmoishell {
   if [[ $CHEZMOI_SUBSHELL = 1 ]]; then
-    prompt_segment cyan white "$CHEZMOI_ARGS"
+    prompt_segment cyan black "$CHEZMOI_ARGS"
   fi
 }
 
