@@ -1,7 +1,7 @@
 {
   "layer": "top",
   "height": 26,
-  "modules-left": ["hyprland/workspaces", "hyprland/mode"],
+  "modules-left": ["hyprland/workspaces", "hyprland/media", "hyprland/mode"],
   "modules-center": ["hyprland/window"],
   "modules-right": ["custom/timer", "pulseaudio", "custom/vpn", "network", "backlight", "custom/bluetooth-power", "battery", "clock"],
   "hyprland/workspaces": {
@@ -19,7 +19,7 @@
           "7": "<span font='16' rise='-3000'>󰴢</span>",
           "8": "<span font='16' rise='-3000'>󰊻</span>",
           "9": "<span font='16' rise='-3000'></span>",
-          "10": "10 <span font='16' rise='-3000'></span>"
+          "10": "<span font='16' rise='-3000'></span>"
       }
   },
   "hyprland/mode": {
@@ -135,8 +135,8 @@
         "default": "🎜"
     },
     "escape": true,
-    "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null", // Script in resources folder
-    //"exec": "$HOME/.config/waybar/scripts/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    //"exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null", // Script in resources folder
+    "exec": "$HOME/.config/waybar/scripts/mediaplayer.py --player spotify 2> /dev/null", // Filter player based on name
     "on-click": "playerctl play-pause",
     "on-scroll-up": "playerctl next",
     "on-scroll-down": "playerctl previous"
@@ -151,5 +151,6 @@
     "return-type": "json",
     "exec": "$HOME/.config/waybar/scripts/bluetooth-power.py",
     "restart-interval": "5",
+    "on-click-right": "hyprctl dispatch exec flatpak run io.github.kaii_lb.Overskride",
   }
 }

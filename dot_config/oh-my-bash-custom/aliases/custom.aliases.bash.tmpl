@@ -3,10 +3,17 @@ export GITHUB_USERNAME="PascalKont"
 
 alias setup_epel='sudo subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms && sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm'
 
+alias q='exit'
+
 alias ls='lsd'
-alias l='ls --size short --total-size -alhg'
+alias l='ls --size short -alhg'
+alias lts='ls --size short --total-size -alhg'
+
 alias la='l --tree --depth 2'
+alias lats='lts --tree --depth 2'
+
 alias laa='l --tree --depth 5'
+alias laats='lts --tree --depth 5'
 
 if command -v nvim &>/dev/null; then
 	alias vim=nvim
@@ -25,7 +32,7 @@ v() {
 alias czap='chezmoi apply'
 alias aliasconf='chezmoi edit --apply ~/.config/oh-my-bash-custom/aliases/custom.aliases.bash; src'
 alias swayconf='chezmoi edit --apply ~/.config/sway/config; src'
-alias hyprconf='chezmoi edit --apply ~/.config/hypr/hyprland.conf; src'
+alias hyprconf='chezmoi edit --apply ~/.config/hypr/hyprland.conf; src; hyprctl reload'
 alias ohsconf='chezmoi edit --apply ~/.config/oh-my-bash/; src'
 alias bashrc='chezmoi edit --apply ~/.bashrc; src'
 

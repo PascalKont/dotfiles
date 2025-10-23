@@ -70,6 +70,18 @@ output 'NEC Corporation E243WMi 76310374NB' {
     alias $WB2_right
   }
 
+output 'NEC Corporation E243F 25601642HB' {
+    mode 1920x1080@60.000
+    position 0,0
+    alias $MUC3_left
+  }
+
+output 'NEC Corporation E243F 25601643HB' {
+    mode 1920x1080@60.000
+    position 1920,0
+    alias $MUC3_right
+  }
+
 # Mobile
 profile Mobile {
     output $INTERNAL enable
@@ -111,6 +123,12 @@ profile MUC2 {
 #    exec swaymsg workspace 0, move workspace to output '"NEC Corporation E243F 25601662HB"'
 #    exec swaymsg workspace 1, move workspace to output '"NEC Corporation E243F 25601668HB"'
 #    exec swaymsg workspace 2, move workspace to output '"Samsung Display Corp. 0x419F Unknown"'
+  }
+
+profile MUC3 {
+    output $MUC3_left enable
+    output $MUC3_right enable
+    output $INTERNAL position 3840,800 enable
   }
 
 # WB1
