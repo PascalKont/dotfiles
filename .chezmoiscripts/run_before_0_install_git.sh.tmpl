@@ -1,3 +1,5 @@
+{{- if eq .hosttype "work" "private" }}
+{{- if eq .chezmoi.os "linux" -}}
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -31,3 +33,6 @@ else
   echo "Git installation failed."
   exit 1
 fi
+
+{{- end }}
+{{- end }}
