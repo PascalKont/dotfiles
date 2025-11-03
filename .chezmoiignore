@@ -1,3 +1,8 @@
 **/*-lock.json
 **/*fzf-bash-completion.sh
 **/hypr/workspaces.conf
+
+{{- if ne .chezmoi.os "linux" }}
+.config
+.local
+{{- end}}
