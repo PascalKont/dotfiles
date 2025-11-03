@@ -18,9 +18,26 @@ for i in "${!outputs[@]}"; do
   workspace_eval=$(eval "echo $workspace_level1")
   echo $workspace_eval >>$tmp_file
 
-  # write leve 2 workspaces, non persistent
+  # write level 2 workspaces, non persistent
   k=$(($j + 3))
   workspace_eval=$(eval "echo $workspace_level2")
+  echo $workspace_eval >>$tmp_file
+done
+
+mail_monitor=${outputs[0]}
+if [[ "${outputs[2]}" == "eDP-1" ]]; then
+  mail_monitor=${outputs[0]}
+elif [[ "${outputs[0]}" == "eDP-1" ]]; then
+  mail_monitor=${outputs[2]}
+else
+  #echo "eDP-1 not detected, using first monitor"
+  mail_monitor=${outputs[0]}
+fi
+
+# write mail, teams and password workspaces, persistent
+workspace_mail='workspace = $i, monitor:${mail_monitor}, default:0, persistent:1'
+for i in 7 8 9; do
+  workspace_eval=$(eval "echo $workspace_mail")
   echo $workspace_eval >>$tmp_file
 done
 
