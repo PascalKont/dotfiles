@@ -1,6 +1,7 @@
 **/*-lock.json
 **/*fzf-bash-completion.sh
 **/hypr/workspaces.conf
+.ignored
 
 {{- if ne .chezmoi.os "linux" }}
 .config
@@ -10,8 +11,9 @@
 {{- if and (ne .hosttype "full") (ne .hosttype "private") (ne .hosttype "work") (ne .hosttype "external-work") }}
 .config
 .local
+{{- end}}
 
-{{- if and (ne .hosttype "full") (ne .hosttype "private") (ne .hosttype "work") }}
+{{- if and (ne .hosttype "full") (ne .hyprland "true") }}
 .config/cliphist
 .config/foot
 .config/hypr
@@ -20,6 +22,4 @@
 .config/satty
 .config/sway
 .config/waybar
-
-{{- end}}
 {{- end}}

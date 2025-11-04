@@ -53,7 +53,7 @@ else
   exit 1
 fi
 
-PACKAGES=(ansible)
+PACKAGES=(ansible passlib)
 
 log "Starting installation of packages: ${PACKAGES[*]}"
 if pipx install --include-deps "${PACKAGES[@]}" >>"$LOGFILE" 2>&1; then

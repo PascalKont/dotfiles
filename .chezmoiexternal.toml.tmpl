@@ -1,4 +1,4 @@
-{{ if eq .hosttype "full" "work" "private" }}
+{{ if eq .hosttype "full" "work" "external-work" "private" }}
     {{ if eq .chezmoi.os "linux" }}
 
 [".config/oh-my-bash"]
@@ -11,13 +11,14 @@
   url = "https://raw.githubusercontent.com/lincheney/fzf-tab-completion/refs/heads/master/bash/fzf-bash-completion.sh"
   refreshPeriod = "168h"
 
-        {{ if eq .chezmoi.arch "amd64" }}
+{{ if eq .chezmoi.arch "amd64" }}
 [".local/lib/nvim.appimage"]
-    type = "file"
-    url = "https://github.com/neovim/neovim/releases/download/v0.11.4/nvim-linux-x86_64.appimage"
-    refreshPeriod = "672h"
-        {{ end }}
+  type = "file"
+  url = "https://github.com/neovim/neovim/releases/download/v0.11.4/nvim-linux-x86_64.appimage"
+  refreshPeriod = "672h"
+{{ end }}
 
+{{ if eq .hyprland "true" }}
 [".local/share/fonts/0xproto"]
   type = "archive"
   url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/0xProto.zip"
@@ -32,6 +33,7 @@
   exact = true
   refreshPeriod = "672h"
   include = ["**/main.py"]
+{{ end }}
   
     {{ end }}
 {{ end }}
