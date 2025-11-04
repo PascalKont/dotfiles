@@ -1,4 +1,4 @@
-{{- if eq .hosttype "full" "work" "private" -}}
+{{- if eq .hosttype "full" "work" "external-work" "private" -}}
   {{- if eq .chezmoi.os "linux" -}}
 # Enable the subsequent settings only in interactive sessions
 case $- in
@@ -6,7 +6,7 @@ case $- in
 *) return ;;
 esac
 
-    {{- if eq .hosttype "full" "private" }}
+    {{- if eq .hosttype "full" "private" "external-work" }}
 
 # SSH-Agent
 if ! test -e /tmp/ssh-agent.eval; then
