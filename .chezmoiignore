@@ -6,12 +6,12 @@
 {{- if ne .chezmoi.os "linux" }}
 .config
 .local
-{{- end}}
+{{- end }}
 
 {{- if and (ne .hosttype "full") (ne .hosttype "private") (ne .hosttype "work") (ne .hosttype "external-work") }}
 .config
 .local
-{{- end}}
+{{- end }}
 
 {{- if and (ne .hosttype "full") (ne .hyprland "true") }}
 .config/cliphist
@@ -22,4 +22,8 @@
 .config/satty
 .config/sway
 .config/waybar
-{{- end}}
+{{- end }}
+
+{{- if and (ne .hosttype "full") (ne .hosttype "work") }}
+.config/nvim/lua/plugins/copilot.lua
+{{- end }}
