@@ -2,9 +2,7 @@
 **/*fzf-bash-completion.sh
 **/hypr/workspaces.conf
 
-{{- if ne .chezmoi.os "linux" }}
-{{- if ne .hosttype "full" "work" "private" }}
+{{- if and ne .chezmoi.os "linux" ne .hosttype "full" "work" "private" }}
 .config
 .local
-{{- end}}
 {{- end}}
