@@ -8,7 +8,7 @@ encryption = "gpg"
 {{- if and $stat (eq $stat.type "file") }}
   {{- $hosttype = output $path }}
 {{- else }}
-  {{- $choices := list "minimal" "full" "work" "private" }}
+  {{- $choices := list "minimal" "full" "work" "external-work" "private" }}
   {{- $hosttype = promptChoiceOnce . "hosttype" "What type of host are you on" $choices $hosttype }}
 {{- end }}
 
