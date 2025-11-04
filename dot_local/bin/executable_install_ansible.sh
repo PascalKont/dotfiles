@@ -53,12 +53,22 @@ else
   exit 1
 fi
 
-PACKAGES=(ansible passlib)
+PACKAGES=(ansible ansible-builder)
 
-log "Starting installation of packages: ${PACKAGES[*]}"
+log "Starting installation of pipx environment: ${PACKAGES[*]}"
 if pipx install --include-deps "${PACKAGES[@]}" >>"$LOGFILE" 2>&1; then
-  log "Successfully installed pipx packages: ${PACKAGES[*]}"
+  log "Successfully installed pipx environment: ${PACKAGES[*]}"
 else
-  log "ERROR: Failed to install pipx packages: ${PACKAGES[*]}"
+  log "ERROR: Failed to install pipx environment: ${PACKAGES[*]}"
+  exit 1
+fi
+
+PACKAGES=(passlib)
+
+log "Starting injection of packages into ansible pipx environment: ${PACKAGES[*]}"
+if pipx inject ansible "${PACKAGES[@]}" >>"$LOGFILE" 2>&1; then
+  log "Successfully injected packages: ${PACKAGES[*]}"
+else
+  log "ERROR: Failed to inject packages: ${PACKAGES[*]}"
   exit 1
 fi
