@@ -3,6 +3,8 @@
 **/hypr/workspaces.conf
 
 {{- if ne .chezmoi.os "linux" }}
+{{- if ne .hosttype "full" "work" "private" }}
 .config
 .local
+{{- end}}
 {{- end}}
