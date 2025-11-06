@@ -30,4 +30,5 @@
 
 {{- if eq .hosttype "external-work" }}
 .gitignore
+.gitconfig
 {{- end }}
