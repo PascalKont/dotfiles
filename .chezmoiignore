@@ -27,3 +27,7 @@
 {{- if and (ne .hosttype "full") (ne .hosttype "work") }}
 .config/nvim/lua/plugins/copilot.lua
 {{- end }}
+
+{{- if eq .hosttype "external-work" }}
+.gitignore
+{{- end }}
