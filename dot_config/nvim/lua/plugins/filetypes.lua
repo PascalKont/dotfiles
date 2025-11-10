@@ -4,6 +4,8 @@ return {
       [".*%.toml%.tmpl"] = "toml",
       [".*%.bash%.tmpl"] = "bash",
       [".*%.sh%.tmpl"] = "sh",
+      ["%.ansible%-lint"] = "yaml",
+      -- [".*%.yml"] = "yaml.ansible",
     },
   }),
 }
