@@ -134,6 +134,10 @@ aliases=(
   ls
   my-package-manager
   custom
+{{- if eq .hosttype "external-work" }}
+  terraform
+  external-work
+{{- end }}
 )
 
 # Which plugins would you like to conditionally load? (plugins can be found in ~/.oh-my-bash/plugins/*)
