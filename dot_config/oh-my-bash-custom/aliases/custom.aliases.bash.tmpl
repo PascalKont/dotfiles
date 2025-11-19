@@ -5,15 +5,17 @@ alias setup_epel='sudo subscription-manager repos --enable codeready-builder-for
 
 alias q='exit'
 
-alias ls='lsd'
-alias l='ls --size short -alhg'
-alias lts='ls --size short --total-size -alhg'
+if [[ $(which lsd 2>/dev/null) ]]; then
+  alias ls='lsd'
+  alias l='ls --size short -alhg'
+  alias lts='ls --size short --total-size -alhg'
 
-alias la='l --tree --depth 2'
-alias lats='lts --tree --depth 2'
+  alias la='l --tree --depth 2'
+  alias lats='lts --tree --depth 2'
 
-alias laa='l --tree --depth 5'
-alias laats='lts --tree --depth 5'
+  alias laa='l --tree --depth 5'
+  alias laats='lts --tree --depth 5'
+fi
 
 alias glo='glola'
 
