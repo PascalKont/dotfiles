@@ -6,6 +6,9 @@ alias setup_epel='sudo subscription-manager repos --enable codeready-builder-for
 alias q='exit'
 
 if [[ $(which lsd 2>/dev/null) ]]; then
+# ========
+# =  ls  =
+# ========
   alias ls='lsd'
   alias l='ls --size short -alhg'
   alias lts='ls --size short --total-size -alhg'
@@ -17,8 +20,24 @@ if [[ $(which lsd 2>/dev/null) ]]; then
   alias laats='lts --tree --depth 5'
 fi
 
+
+# =========
+# =  Git  =
+# =========
 alias glo='glola'
 
+unalias gc 2>/dev/null
+gc() {
+  if [[ $1 == "" ]]; then
+    git commit
+  else
+    git commit -m "$(echo $@)"
+  fi
+}
+
+# =========
+# =  VIM  =
+# =========
 if command -v nvim &>/dev/null; then
 	alias vim=nvim
 fi
@@ -33,6 +52,9 @@ v() {
   fi
 }
 
+# ===========
+# = chezmoi =
+# ===========
 alias czap='chezmoi apply'
 alias aliasconf='chezmoi edit --apply ~/.config/oh-my-bash-custom/aliases/custom.aliases.bash; src'
 alias swayconf='chezmoi edit --apply ~/.config/sway/config; src'
@@ -40,10 +62,16 @@ alias hyprconf='chezmoi edit --apply ~/.config/hypr/hyprland.conf; src; hyprctl 
 alias ohsconf='chezmoi edit --apply ~/.config/oh-my-bash/; src'
 alias bashrc='chezmoi edit --apply ~/.bashrc; src'
 
+# ==========
+# =  tree  =
+# ==========
 alias tre='/usr/bin/tree -pugAC -L 2'
 alias tree='/usr/bin/tree -pugAC -L 4'
 alias treee='/usr/bin/tree -pugAC'
 
+# ===========
+# = Ansible =
+# ===========
 alias alint='ansible-lint'
 alias aplay='aplaybook'
 alias ap='aplaybook'
