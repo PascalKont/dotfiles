@@ -1,0 +1,11 @@
+{{- if eq .hosttype "work" "private" "full"}}
+{{- if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+mkdir -p ~/.local/bin
+cp -r ~/bin/* ~/.local/bin/
+rm -rf ~/bin
+
+{{- end }}
+{{- end }}
