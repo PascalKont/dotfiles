@@ -3,12 +3,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Check if Pinentry is already installed
-if command -v pinentry &>/dev/null; then
-  #echo "Pinentry is already installed."
-  exit 0
-fi
-
 # Detect OS
 OS=$(uname | tr '[:upper:]' '[:lower:]')
 echo "Detected OS: $OS"
@@ -31,17 +25,32 @@ install_pinentry() {
     echo "No supported package manager found. Please install Pinentry manually."
     exit 1
   fi
+
+  # Verify installation
+  if command -v pinentry &>/dev/null; then
+    echo "Pinentry successfully installed."
+  else
+    echo "Pinentry installation failed."
+    exit 1
+  fi
 }
 
-# Run the installation
-install_pinentry
+# Check if trust.db is missing
+if [ ! -f "~/.gnupg/trustdb.gpg" ]; then
+  echo "GPG trust database not found. Initializing GPG..."
+  gpg --list-keys >/dev/null 2>&1 || true
 
-# Verify installation
-if command -v pinentry &>/dev/null; then
-  echo "Pinentry successfully installed."
-else
-  echo "Pinentry installation failed."
-  exit 1
+  # Check if Pinentry is missing
+  if [ ! command -v pinentry ] &>/dev/null; then
+    install_pinentry
+  fi
+
+  # Check if gpg.export exists and import keys
+  if [ -f "~/gpg.export" ]; then
+    echo "Importing GPG keys from gpg.export..."
+    gpg --import "~/gpg.export"
+    echo "GPG keys imported successfully."
+  fi
 fi
 
 {{- end }}
