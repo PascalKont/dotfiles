@@ -1,0 +1,48 @@
+{{- if eq .hosttype "work" "private" "full"}}
+{{- if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Check if Pinentry is already installed
+if command -v pinentry &>/dev/null; then
+  #echo "Pinentry is already installed."
+  exit 0
+fi
+
+# Detect OS
+OS=$(uname | tr '[:upper:]' '[:lower:]')
+echo "Detected OS: $OS"
+
+install_pinentry() {
+  if command -v dnf &>/dev/null; then
+    echo "Installing Pinentry via dnf..."
+    sudo dnf install -y pinentry
+  elif command -v apt-get &>/dev/null; then
+    echo "Installing Pinentry via apt-get..."
+    sudo apt-get update
+    sudo apt-get install -y pinentry
+  elif command -v yum &>/dev/null; then
+    echo "Installing Pinentry via yum..."
+    sudo yum install -y pinentry
+  elif command -v pacman &>/dev/null; then
+    echo "Installing Pinentry via pacman..."
+    sudo pacman -Sy --noconfirm pinentry
+  else
+    echo "No supported package manager found. Please install Pinentry manually."
+    exit 1
+  fi
+}
+
+# Run the installation
+install_pinentry
+
+# Verify installation
+if command -v pinentry &>/dev/null; then
+  echo "Pinentry successfully installed."
+else
+  echo "Pinentry installation failed."
+  exit 1
+fi
+
+{{- end }}
+{{- end }}
