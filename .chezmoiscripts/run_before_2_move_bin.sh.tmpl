@@ -3,9 +3,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-mkdir -p ~/.local/bin
-cp -r ~/bin/* ~/.local/bin/
-rm -rf ~/bin
+if [ -d ~/bin ]; then
+  mkdir -p ~/.local/bin
+  cp -r ~/bin/* ~/.local/bin/
+  rm -rf ~/bin
+fi
 
 {{- end }}
 {{- end }}
