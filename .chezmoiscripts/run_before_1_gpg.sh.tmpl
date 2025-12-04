@@ -35,22 +35,17 @@ install_pinentry() {
   fi
 }
 
-# Check if trust.db is missing
-if [ ! -f "~/.gnupg/trustdb.gpg" ]; then
-  echo "GPG trust database not found. Initializing GPG..."
-  gpg --list-keys >/dev/null 2>&1 || true
+# Check if Pinentry is missing
+if [ ! command -v pinentry ] &>/dev/null; then
+  install_pinentry
+fi
 
-  # Check if Pinentry is missing
-  if [ ! command -v pinentry ] &>/dev/null; then
-    install_pinentry
-  fi
-
-  # Check if gpg.export exists and import keys
-  if [ -f "~/gpg.export" ]; then
-    echo "Importing GPG keys from gpg.export..."
-    gpg --import "~/gpg.export"
-    echo "GPG keys imported successfully."
-  fi
+# Check if gpg.export exists and import keys
+if [ -f "~/gpg.export" ]; then
+  echo "=================================================="
+  echo "Please import gpg.export to GPG and then delete it"
+  echo "=================================================="
+  exit 1
 fi
 
 {{- end }}
