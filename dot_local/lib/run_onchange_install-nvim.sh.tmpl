@@ -1,5 +1,5 @@
-{{- if eq .hosttype "work" "private" -}}
-    {{- if eq .chezmoi.os "linux" -}}
+{{- if eq .hosttype "work" "private" "full" -}}
+{{- if eq .chezmoi.os "linux" -}}
 #!/bin/bash
 {{ $path := joinPath .chezmoi.homeDir ".local/lib/nvim.appimage" -}}
 # nvim hash: {{ include $path | sha256sum }}
@@ -14,4 +14,3 @@ cp $HOME/.local/lib/nvim.appimage $path
 chmod 744 $path
 {{ end -}}
 {{- end -}}
-
