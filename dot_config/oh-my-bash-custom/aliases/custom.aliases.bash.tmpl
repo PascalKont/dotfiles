@@ -26,14 +26,6 @@ fi
 # =========
 alias glo='glola'
 
-unalias gc 2>/dev/null
-gc() {
-  if [[ $1 == "" ]]; then
-    git commit
-  else
-    git commit -m "$(echo $@)"
-  fi
-}
 
 # =========
 # =  VIM  =
