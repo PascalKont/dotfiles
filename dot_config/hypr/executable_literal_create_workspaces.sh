@@ -12,14 +12,14 @@ conf_file=$HOME/.config/hypr/workspaces.conf
 rm -f $tmp_file
 
 for i in "${!outputs[@]}"; do
-  j=$(($i + 1)) # hyprland starts at index 1
+  j=$(($i * 2 + 1)) # hyprland starts at index 1
 
   # write level 1 workspaces, persistent
   workspace_eval=$(eval "echo $workspace_level1")
   echo $workspace_eval >>$tmp_file
 
   # write level 2 workspaces, non persistent
-  k=$(($j + 3))
+  k=$(($j + 1))
   workspace_eval=$(eval "echo $workspace_level2")
   echo $workspace_eval >>$tmp_file
 done
