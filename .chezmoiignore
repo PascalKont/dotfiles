@@ -2,17 +2,28 @@
 **/*fzf-bash-completion.sh
 **/hypr/workspaces.conf
 .ignored
+.bashrc.d/**
 
+{{- /* 
+      The if statements can also be interpretet as include statements.
+      If os is Linux, then include those dirs, else exclude them (as we are in the exclude file)
+*/ -}}
 {{- if ne .chezmoi.os "linux" }}
 .config
 .local
 {{- end }}
 
+{{- /* 
+      If hosttype equals one of the below, only then include the dirs
+*/ -}}
 {{- if and (ne .hosttype "full") (ne .hosttype "private") (ne .hosttype "work") (ne .hosttype "external-work") }}
 .config
 .local
 {{- end }}
 
+{{- /* 
+      If hosttype equals one of the below, only then include the dirs
+*/ -}}
 {{- if and (ne .hosttype "full") (ne .hyprland "true") }}
 .config/cliphist
 .config/foot
@@ -24,10 +35,17 @@
 .config/waybar
 {{- end }}
 
+{{- /* 
+      If hosttype equals one of the below, only then include the dirs
+*/ -}}
 {{- if and (ne .hosttype "full") (ne .hosttype "work") }}
 .config/nvim/lua/plugins/copilot.lua
+.config/nvim/lua/plugins/gitlab-duo.lua
 {{- end }}
 
+{{- /* 
+      This one is not flippen, if hosttype = external-work, then exclude the dirs
+*/ -}}
 {{- if eq .hosttype "external-work" }}
 .gitignore
 .gitconfig

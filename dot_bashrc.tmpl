@@ -168,5 +168,15 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
+
+# Source local bashrc-d/* files if any exist
+if [ -d "$HOME/.bashrc.d" ]; then
+  for rc in "$HOME"/.bashrc.d/*; do
+    if [ -f "$rc" ]; then
+      source "$rc"
+    fi
+  done
+  unset rc
+fi
   {{- end -}}
 {{- end -}}
