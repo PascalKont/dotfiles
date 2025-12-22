@@ -38,7 +38,7 @@
 {{- /* 
       If hosttype equals one of the below, only then include the dirs
 */ -}}
-{{- if and (ne .hosttype "full") (ne .hosttype "work") }}
+{{- if and (ne .hosttype "full") (ne .hosttype "work") (ne .hosttype "private" )}}
 .config/nvim/lua/plugins/copilot.lua
 .config/nvim/lua/plugins/gitlab-duo.lua
 {{- end }}
