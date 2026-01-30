@@ -6,9 +6,9 @@ alias setup_epel='sudo subscription-manager repos --enable codeready-builder-for
 alias q='exit'
 
 if [[ $(which lsd 2>/dev/null) ]]; then
-# ========
-# =  ls  =
-# ========
+  # ========
+  # =  ls  =
+  # ========
   alias ls='lsd'
   alias l='ls --size short -alhg'
   alias lts='ls --size short --total-size -alhg'
@@ -20,18 +20,16 @@ if [[ $(which lsd 2>/dev/null) ]]; then
   alias laats='lts --tree --depth 5'
 fi
 
-
 # =========
 # =  Git  =
 # =========
 alias glo='glola'
 
-
 # =========
 # =  VIM  =
 # =========
 if command -v nvim &>/dev/null; then
-	alias vim=nvim
+  alias vim=nvim
 fi
 alias vi=vim
 #alias v=vi
@@ -67,3 +65,14 @@ alias treee='/usr/bin/tree -pugAC'
 alias alint='ansible-lint'
 alias aplay='aplaybook'
 alias ap='aplaybook'
+
+# ===========
+# = Python  =
+# ===========
+act() {
+  if [ $(find $PWD -type f -regex ".*/bin/activate" | wc -l) == 1 ]; then
+    source $(find $PWD -type f -regex ".*/bin/activate")
+  else
+    echo "Could not reliably find file 'activate'"
+  fi
+}
