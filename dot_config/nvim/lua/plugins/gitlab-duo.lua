@@ -1,5 +1,6 @@
 return {
   "https://gitlab.com/gitlab-org/editor-extensions/gitlab.vim.git",
+  enabled = false,
   -- Activate when a file is created/opened
   event = { "BufReadPre", "BufNewFile" },
 

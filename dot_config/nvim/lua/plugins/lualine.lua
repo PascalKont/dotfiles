@@ -24,7 +24,9 @@ return {
     vim.o.laststatus = vim.g.lualine_laststatus
 
     local function ai_status()
-      if vim.b.copilot_enabled == false and package.loaded["gitlab"] then
+      if package.loaded["gemini"] then
+        return "󰚩 Gemini"
+      elseif vim.b.copilot_enabled == false and package.loaded["gitlab"] then
         return "🦊 Duo"
       elseif vim.b.copilot_enabled ~= false and vim.g.copilot_enabled ~= false then
         return "🤖 Copilot"
