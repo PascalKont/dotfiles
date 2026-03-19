@@ -42,3 +42,12 @@
 {{ if eq .hosttype "work" "private" }}
 
 {{ end }}
+
+{{ if eq .chezmoi.os "windows" }}
+["AppData/Local/Microsoft/Windows/Fonts/0xproto"]
+  type = "archive"
+  url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/0xProto.zip"
+  exact = true
+  refreshPeriod = "672h"
+  include = ["*.ttf"]
+{{ end }}

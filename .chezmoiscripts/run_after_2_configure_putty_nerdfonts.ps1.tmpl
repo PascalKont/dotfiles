@@ -1,0 +1,31 @@
+{{- if eq .chezmoi.os "windows" -}}
+# Register 0xProto NerdFont for the current user (no admin required)
+# Fonts are already placed in %LOCALAPPDATA%\Microsoft\Windows\Fonts by chezmoi
+$fontsDir = "$env:LOCALAPPDATA\Microsoft\Windows\Fonts"
+$fontRegistryPath = "HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts"
+
+if (Test-Path $fontsDir) {
+    Get-ChildItem -Path $fontsDir -Filter "*.ttf" | ForEach-Object {
+        $fontName = $_.BaseName + " (TrueType)"
+        $fontValue = $_.FullName
+        $existing = Get-ItemProperty -Path $fontRegistryPath -Name $fontName -ErrorAction SilentlyContinue
+        if (-not $existing) {
+            New-ItemProperty -Path $fontRegistryPath -Name $fontName -Value $fontValue -PropertyType String | Out-Null
+            Write-Host "Registered font: $fontName"
+        }
+    }
+}
+
+# Configure PuTTY default session to use 0xProto Nerd Font Mono (no admin required,
+# PuTTY stores its configuration in HKCU)
+$puttySessionPath = "HKCU:\Software\SimonTatham\PuTTY\Sessions\Default%20Settings"
+if (Test-Path $puttySessionPath) {
+    Set-ItemProperty -Path $puttySessionPath -Name "Font" -Value "0xProto Nerd Font Mono"
+    Set-ItemProperty -Path $puttySessionPath -Name "FontHeight" -Type DWord -Value 10
+    Set-ItemProperty -Path $puttySessionPath -Name "FontCharSet" -Type DWord -Value 0
+    Set-ItemProperty -Path $puttySessionPath -Name "FontQuality" -Type DWord -Value 0
+    Write-Host "PuTTY default session configured to use 0xProto Nerd Font Mono"
+} else {
+    Write-Warning "PuTTY default session registry path not found ($puttySessionPath). Launch PuTTY at least once to create the default session, then re-run 'chezmoi apply'."
+}
+{{- end -}}
