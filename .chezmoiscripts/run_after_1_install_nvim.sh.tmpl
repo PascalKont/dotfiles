@@ -46,7 +46,7 @@ if [[ -x "\$MICROMAMBA" ]]; then
   micromamba activate "\$MAMBA_ENV"
 fi
 
-exec "$NVIM_EXEC" "$@"
+exec "$NVIM_APPIMAGE" "\$@"
 EOF
 
   chmod +x $NVIM_EXEC
