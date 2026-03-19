@@ -1,5 +1,4 @@
-{{- if eq .hosttype "full" "work" "external-work" "private" -}}
-  {{- if eq .chezmoi.os "linux" -}}
+{{- if eq .chezmoi.os "linux" -}}
 # Enable the subsequent settings only in interactive sessions
 case $- in
 *i*) ;;
@@ -178,5 +177,4 @@ if [ -d "$HOME/.bashrc.d" ]; then
   done
   unset rc
 fi
-  {{- end -}}
 {{- end -}}
