@@ -3,6 +3,7 @@
 set -euo pipefail
 
 BIN_PATH="$HOME/.local/bin"
+OPT_PATH="$HOME/.local/opt"
 MAMBA_ROOT_PREFIX="$HOME/.local/opt/mamba/envs/nvim-ts"
 NVIM_APPIMAGE="$HOME/.local/libexec/nvim.appimage"
 NVIM_EXEC="$BIN_PATH/nvim"
@@ -11,15 +12,15 @@ CC_PATH="$(command -v cc 2>/dev/null)" || CC_PATH=""
 MAKE_PATH="$(command -v make 2>/dev/null)" || MAKE_PATH=""
 
 mkdir -p "$BIN_PATH"
-mkdir -p "$HOME/.local/opt"
+mkdir -p "$OPT_PATH"
 
 # check if cc and make exist
 if [[ -n "$CC_PATH" && -x "$CC_PATH" && -n "$MAKE_PATH" && -x "$MAKE_PATH" ]]; then
   # if they exist, then just link to the nvim.appimage
 
   # if nvim.appimage exists and link does not exist, then link it
-  if [[ -f $NVIM_PATH && -z $NVIM_EXEC ]]; then
-    ln -s $NVIM_PATH "$NVIM_EXEC"
+  if [[ -f $NVIM_APPIMAGE && -z $NVIM_EXEC ]]; then
+    ln -s $NVIM_APPIMAGE "$NVIM_EXEC"
   fi
 
 elif [[ ! -d "$MAMBA_ROOT_PREFIX" ]]; then

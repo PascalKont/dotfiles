@@ -1,0 +1,14 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+BIN_PATH="$HOME/.local/bin"
+OPT_PATH="$HOME/.local/opt"
+
+if [[ -x "$OPT_PATH/node/bin/node" && ! -L "$BIN_PATH/node" ]]; then
+  mkdir -p "$BIN_PATH"
+  mkdir -p "$OPT_PATH"
+  ln -s $OPT_PATH/node/bin/* $BIN_PATH/
+fi
+
+{{- end }}

@@ -10,6 +10,15 @@
   url = "https://raw.githubusercontent.com/lincheney/fzf-tab-completion/refs/heads/master/bash/fzf-bash-completion.sh"
   refreshPeriod = "168h"
 
+{{-   if not (lookPath "node") }}
+[".local/opt/node"]
+  type = "archive"
+  url = "https://nodejs.org/dist/v24.14.0/node-v24.14.0-linux-x64.tar.xz"
+  stripComponents = 1
+  exact = true
+  refreshPeriod = "672h"
+{{    end }}
+
 {{    if eq .chezmoi.arch "amd64" }}
 [".local/libexec/nvim.appimage"]
   type = "file"
