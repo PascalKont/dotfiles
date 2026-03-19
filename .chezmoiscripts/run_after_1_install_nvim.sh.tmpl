@@ -1,0 +1,21 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+CC_PATH="$(command -v cc 2>/dev/null)" || CC_PATH=""
+MAKE_PATH="$(command -v make 2>/dev/null)" || MAKE_PATH=""
+
+mkdir -p ~/.local/bin
+
+# check if cc and make exist
+if [[ -n "$CC_PATH" && -x "$CC_PATH" && -n "$MAKE_PATH" && -x "$MAKE_PATH" ]]; then
+  # if they exist, then just link to the nvim.appimage
+  if [[ -f ~/.local/libexec/nvim.appimage && -z ~/.local/bin/nvim ]]; then
+    ln -s ~/.local/libexec/nvim.appimage ~/.local/bin/nvim
+  fi
+else
+  # if they don't exist, then we need to install them selfcontained
+  echo "hi"
+fi
+
+{{- end }}

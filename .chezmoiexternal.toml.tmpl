@@ -11,10 +11,11 @@
   refreshPeriod = "168h"
 
 {{    if eq .chezmoi.arch "amd64" }}
-[".local/lib/nvim.appimage"]
+[".local/libexec/nvim.appimage"]
   type = "file"
   url = "https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.appimage"
   refreshPeriod = "672h"
+  executable = true
 {{    end }}
 
 {{    if eq .hosttype "full" "work" "external-work" "private" }}
