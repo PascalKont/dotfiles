@@ -3,7 +3,7 @@
 set -euo pipefail
 
 BIN_PATH="$HOME/.local/bin"
-MAMBA_ENV="$HOME/.local/opt/mamba/envs/nvim-ts"
+MAMBA_ROOT_PREFIX="$HOME/.local/opt/mamba/envs/nvim-ts"
 NVIM_APPIMAGE="$HOME/.local/libexec/nvim.appimage"
 NVIM_EXEC="$BIN_PATH/nvim"
 
@@ -22,14 +22,14 @@ if [[ -n "$CC_PATH" && -x "$CC_PATH" && -n "$MAKE_PATH" && -x "$MAKE_PATH" ]]; t
     ln -s $NVIM_PATH "$NVIM_EXEC"
   fi
 
-elif [[ ! -d "$MAMBA_ENV" ]]; then
+elif [[ ! -d "$MAMBA_ROOT_PREFIX" ]]; then
   # if they don't exist and mamba is not yet initialized, then we install them self-contained
 
   # curl micromamba binary
   curl -L https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj -C $BIN_PATH --strip-components=1 bin/micromamba
 
   # create a micromamba environment with compilers and make
-  "$BIN_PATH/micromamba" create -y -p "$MAMBA_ENV" -c conda-forge compilers make pkg-config
+  "$BIN_PATH/micromamba" create -y -p "$MAMBA_ROOT_PREFIX" -c conda-forge compilers make pkg-config
 
   # create a wrapper script for nvim that activates the micromamba environment before running nvim
   cat >"$NVIM_EXEC" <<EOF
@@ -38,12 +38,12 @@ set -euo pipefail
 
 # --- micromamba toolchain for nvim-treesitter builds ---
 MICROMAMBA="$BIN_PATH/micromamba"
-MAMBA_ENV="$MAMBA_ENV"
+MAMBA_ROOT_PREFIX="$MAMBA_ROOT_PREFIX"
 
 if [[ -x "\$MICROMAMBA" ]]; then
   # Initialize micromamba for bash and activate env
   eval "\$("\$MICROMAMBA" shell hook -s bash)"
-  micromamba activate "\$MAMBA_ENV"
+  micromamba activate "\$MAMBA_ROOT_PREFIX"
 fi
 
 exec "$NVIM_APPIMAGE" "\$@"
