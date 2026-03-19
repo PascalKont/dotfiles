@@ -1,3 +1,4 @@
+{{ if eq .hosttype "full" "work" "external-work" "private" }}
 return {
   "github/copilot.vim",
   event = "InsertEnter",
@@ -17,3 +18,4 @@ return {
     vim.keymap.set("i", "<C-K>", "<Plug>(copilot-previous)", {})
   end,
 }
+{{ end }}

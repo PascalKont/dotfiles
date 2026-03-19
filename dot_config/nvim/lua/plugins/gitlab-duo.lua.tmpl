@@ -1,3 +1,4 @@
+{{ if eq .hosttype "full" "work" "external-work" "private" }}
 return {
   "https://gitlab.com/gitlab-org/editor-extensions/gitlab.vim.git",
   -- Activate when a file is created/opened
@@ -90,3 +91,4 @@ return {
     })
   end,
 }
+{{ end }}
