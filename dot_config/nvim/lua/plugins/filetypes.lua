@@ -4,6 +4,7 @@ return {
   },
   vim.filetype.add({
     pattern = {
+      [".*%.lua%.tmpl"] = "lua",
       [".*%.toml%.tmpl"] = "toml",
       [".*%.bash%.tmpl"] = "sh",
       [".*%.sh%.tmpl"] = "sh",

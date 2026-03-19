@@ -1,0 +1,11 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ -f ~/.local/lib/nvim.appimage ]; then
+  mkdir -p ~/.local/bin
+  cp ~/.local/lib/nvim.appimage ~/.local/bin/nvim
+  chmod u+x ~/.local/bin/nvim
+fi
+
+{{- end }}
