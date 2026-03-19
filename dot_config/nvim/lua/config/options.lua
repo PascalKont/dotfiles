@@ -5,6 +5,8 @@ require("config.utf-8")
 
 local opt = vim.opt
 
+opt.spelllang = "de_de,en_us"
+
 -- TAB/INDENT ----------------------------------------------------------------
 opt.tabstop = 2
 opt.shiftwidth = 2
