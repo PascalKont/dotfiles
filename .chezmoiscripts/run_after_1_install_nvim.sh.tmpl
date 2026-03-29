@@ -1,6 +1,7 @@
 {{- if eq .chezmoi.os "linux" -}}
 #!/usr/bin/env bash
 set -euo pipefail
+set -x
 
 BIN_PATH="$HOME/.local/bin"
 OPT_PATH="$HOME/.local/opt"
@@ -19,7 +20,7 @@ if [[ -n "$CC_PATH" && -x "$CC_PATH" && -n "$MAKE_PATH" && -x "$MAKE_PATH" ]]; t
   # if they exist, then just link to the nvim.appimage
 
   # if nvim.appimage exists and link does not exist, then link it
-  if [[ -f $NVIM_APPIMAGE && -z $NVIM_EXEC ]]; then
+  if [[ -f $NVIM_APPIMAGE && ! -L $NVIM_EXEC ]]; then
     ln -s $NVIM_APPIMAGE "$NVIM_EXEC"
   fi
 
