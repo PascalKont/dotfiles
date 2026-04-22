@@ -43,7 +43,22 @@
 .config/nvim/lua/plugins/gitlab-duo.lua.tmpl
 .config/nvim/lua/plugins/codecompanion.lua
 .config/nvim/lua/plugins/codecompanion.lua.tmpl
+.config/nvim/lua/plugins/blink.lua
+.config/nvim/lua/plugins/conform.lua
+.config/nvim/lua/plugins/lsp.lua
+.config/nvim/lua/plugins/lualine.lua
+.config/nvim/lua/plugins/neotest.lua
+.config/nvim/lua/plugins/override.lua
+.config/nvim/lua/plugins/remote.lua
+.config/nvim/lua/plugins/render-markdown.lua
+.config/nvim/lua/plugins/suda.lua
+.config/nvim/lua/plugins/telescope-tabs.lua
+.config/nvim/lua/plugins/terraform.lua
+.config/nvim/lua/plugins/theme.lua
+.config/nvim/lua/plugins/toggleterm.lua
+.config/nvim/lua/plugins/treesitter.lua
 {{- end }}
+.config/nvim/lua/plugins/example.lua
 
 {{- /* 
       This one is not flippen, if hosttype = external-work, then exclude the dirs

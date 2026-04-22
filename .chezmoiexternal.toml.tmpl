@@ -48,6 +48,11 @@
 {{    end }}
 {{ end }}
 
-{{ if eq .hosttype "work" "private" }}
-
-{{ end }}
+#{{ if eq .hosttype "work" "private" }}
+#[".local/libexec/obsidian.appimage"]
+#  type = "file"
+#  url = "{{ (output `bash` `-lc` 'curl -fsSL https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | jq -r ".assets[] | select(.name | endswith(\".AppImage\") and (.name | contains(\"arm64\") | not)) | .browser_download_url" | head -n1') }}"
+#  executable = true
+#  refreshPeriod = "672h"
+#
+#{{ end }}
