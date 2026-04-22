@@ -54,9 +54,6 @@
 .config/nvim/lua/plugins/suda.lua
 .config/nvim/lua/plugins/telescope-tabs.lua
 .config/nvim/lua/plugins/terraform.lua
-.config/nvim/lua/plugins/theme.lua
-.config/nvim/lua/plugins/toggleterm.lua
-.config/nvim/lua/plugins/treesitter.lua
 {{- end }}
 .config/nvim/lua/plugins/example.lua
 
