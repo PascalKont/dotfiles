@@ -43,8 +43,13 @@ return {
         -- section_separators = "",
       },
       sections = {
-        lualine_a = { "mode" },
-        lualine_b = { "branch", "diff" },
+        lualine_a = {
+          "mode",
+        },
+        lualine_b = {
+          "branch",
+          "diff",
+        },
         lualine_c = {
           LazyVim.lualine.root_dir(),
           {
@@ -57,7 +62,26 @@ return {
             },
           },
           { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-          { LazyVim.lualine.pretty_path() },
+          {
+            LazyVim.lualine.pretty_path(),
+            fmt = function(str)
+              if vim.bo.buftype ~= "terminal" then
+                return str
+              end
+
+              local id = vim.b.toggle_number
+              if not id then
+                return "term"
+              end
+
+              local term = require("toggleterm.terminal").get(id)
+              if term and term.display_name and term.display_name ~= "" then
+                return term.display_name
+              end
+
+              return "term #" .. id
+            end,
+          },
         },
         lualine_x = {
           Snacks.profiler.status(),
