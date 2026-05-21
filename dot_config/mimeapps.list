@@ -1,0 +1,14 @@
+[Default Applications]
+x-scheme-handler/mailto=google-chrome.desktop
+text/html=google-chrome.desktop
+text/plain=code.desktop
+x-scheme-handler/http=google-chrome.desktop
+x-scheme-handler/https=google-chrome.desktop
+x-scheme-handler/about=google-chrome.desktop
+x-scheme-handler/unknown=google-chrome.desktop
+inode/directory=thunar.desktop
+application/x-wayland-gnome-saved-search=thunar.desktop
+image/png=org.gnome.Loupe.desktop
+
+[Added Associations]
+image/png=org.gnome.Loupe.desktop;
