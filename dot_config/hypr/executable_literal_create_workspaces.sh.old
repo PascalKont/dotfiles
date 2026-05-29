@@ -4,10 +4,10 @@ outputs=(
   $(hyprctl monitors | grep -Eo 'Monitor .* |at [[:digit:]]*x[[:digit:]]*' | paste - - | sort -n -k5 | cut -d' ' -f2)
 )
 
-workspace_level1='hl.workspace_rule\(\{workspace = "$j", default = true, persistent = true, monitor = \"${outputs[$i]}\"\}\)'
-workspace_level2='hl.workspace_rule\(\{workspace = "$k", default = false, persistent = false, monitor = \"${outputs[$i]}\"\}\)'
-tmp_file=/tmp/workspaces.lua
-conf_file=$HOME/.config/hypr/workspaces.lua
+workspace_level1='workspace = $j, monitor:${outputs[$i]}, default:1, persistent:1'
+workspace_level2='workspace = $k, monitor:${outputs[$i]}, default:0, persistent:0'
+tmp_file=/tmp/workspace.conf
+conf_file=$HOME/.config/hypr/workspaces.conf
 
 rm -f $tmp_file
 
@@ -27,10 +27,7 @@ done
 mail_monitor=${outputs[0]}
 if [[ "${outputs[2]}" == "eDP-1" ]]; then
   mail_monitor=${outputs[0]}
-elif [[ ${outputs[1]} -eq "HDMI-A-1" ]]; then
-  mail_monitor=${outputs[0]}
-elif [[ ${outputs[0]} -eq "eDP-1" ]]; then
-  echo ll
+elif [[ "${outputs[0]}" == "eDP-1" ]]; then
   mail_monitor=${outputs[2]}
 else
   #echo "eDP-1 not detected, using first monitor"
@@ -38,7 +35,7 @@ else
 fi
 
 # write mail, teams and password workspaces, persistent
-workspace_mail='hl.workspace_rule\(\{workspace = "$i", default = false, persistent = true, monitor = \"${mail_monitor}\"\}\)'
+workspace_mail='workspace = $i, monitor:${mail_monitor}, default:0, persistent:1'
 for i in 7 8 9; do
   workspace_eval=$(eval "echo $workspace_mail")
   echo $workspace_eval >>$tmp_file
