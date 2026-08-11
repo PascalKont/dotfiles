@@ -54,9 +54,9 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("1password")
 end)
 
---hl.on("monitor.layout_changed", function()
---	hl.exec_cmd("pkill kanshi; kanshi")
---end)
+hl.on("config.reloaded", function()
+	hl.exec_cmd("pkill kanshi; kanshi")
+end)
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
