@@ -114,6 +114,10 @@ menuitem:hover {
   font-size: 20px;
 }
 
+#backlight {
+  min-width: 47px;
+}
+
 #battery.critical:not(.charging) {
     background-color: #282828;
     color: #282828;
