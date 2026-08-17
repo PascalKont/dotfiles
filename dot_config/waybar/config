@@ -3,8 +3,6 @@
   "height": 29,
   "modules-left": [
     "hyprland/workspaces",
-    "hyprland/media",
-    "hyprland/mode"
   ],
   "modules-center": [
     "hyprland/window"
