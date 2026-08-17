@@ -74,9 +74,8 @@ window#waybar.hidden {
     padding: 0 10px;
     margin: 0 0px;
     color: #000000;
-    background: #3c3836;
+    background: #ebdbb2;
 }
-
 
 #custom-bluetooth-power,
 #custom-vpn,
