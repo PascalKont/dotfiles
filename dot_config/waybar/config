@@ -1,6 +1,6 @@
 {
   "layer": "top",
-  "height": 26,
+  "height": 29,
   "modules-left": [
     "hyprland/workspaces",
     "hyprland/media",
