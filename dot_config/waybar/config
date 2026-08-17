@@ -1,113 +1,154 @@
 {
   "layer": "top",
   "height": 26,
-  "modules-left": ["hyprland/workspaces", "hyprland/media", "hyprland/mode"],
-  "modules-center": ["hyprland/window"],
-  "modules-right": ["custom/timer", "pulseaudio", "custom/vpn", "network", "backlight", "custom/bluetooth-power", "battery", "clock"],
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/media",
+    "hyprland/mode"
+  ],
+  "modules-center": [
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "custom/timer",
+    "pulseaudio",
+    "custom/vpn",
+    "network",
+    "backlight",
+    "custom/bluetooth-power",
+    "battery",
+    "clock"
+  ],
   "hyprland/workspaces": {
-      "disable-scroll": true,
-      "all-outputs": true,
-      "format": "{icon}",
-      "format-icons": {
-          "0": "n <span font='16' rise='-3000'>󰌢</span>",
-          "1": "0 <span font='16' rise='-3000'>󰌢</span>",
-          "2": "1 <span font='16' rise='-3000'>󰌢</span>",
-          "3": "2 <span font='16' rise='-3000'>󰌢</span>",
-          "4": "3 <span font='16' rise='-3000'></span>",
-          "5": "4 <span font='16' rise='-3000'></span>",
-          "6": "5 <span font='16' rise='-3000'></span>",
-          "7": "<span font='16' rise='-3000'>󰴢</span>",
-          "8": "<span font='16' rise='-3000'>󰊻</span>",
-          "9": "<span font='16' rise='-3000'></span>",
-          "10": "<span font='16' rise='-3000'></span>"
-      }
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "0": "n <span font='16' rise='-3000'>󰌢</span>",
+      "1": "0 <span font='16' rise='-3000'>󰌢</span>",
+      "2": "1 <span font='16' rise='-3000'>󰌢</span>",
+      "3": "2 <span font='16' rise='-3000'>󰌢</span>",
+      "4": "3 <span font='16' rise='-3000'></span>",
+      "5": "4 <span font='16' rise='-3000'></span>",
+      "6": "5 <span font='16' rise='-3000'></span>",
+      "7": "<span font='16' rise='-3000'>󰴢</span>",
+      "8": "<span font='16' rise='-3000'>󰊻</span>",
+      "9": "<span font='16' rise='-3000'></span>",
+      "10": "<span font='16' rise='-3000'></span>"
+    }
   },
   "hyprland/mode": {
-      "format": "<span style=\"italic\">{}</span>"
+    "format": "<span style=\"italic\">{}</span>"
   },
   "idle_inhibitor": {
-      "format": "{icon}",
-      "format-icons": {
-          "activated": "",
-          "deactivated": ""
-      }
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
   },
   "clock": {
-      "format": "{:%d.%m.%Y %H:%M}",
-      "tooltip-format": "<big>{:%d %B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "{:%d.%m.%Y %H:%M}",
+    "tooltip-format": "<big>{:%d %B %Y}</big>\n<tt><small>{calendar}</small></tt>",
   },
   "backlight": {
-      "format": "{percent}% <span font='15' rise='-2100'>{icon}</span>",
-      "format-icons": ["", "", "", "", "󰽢"]
+    "format": "{percent}% <span font='15' rise='-2100'>{icon}</span>",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "󰽢"
+    ]
   },
   "battery": {
-      "bat": "BAT0",
-      "states": {
-          "good": 95,
-          "warning": 30,
-          "critical": 15
-      },
-      // Thin Space Character
-      // https://www.compart.com/en/unicode/U+2009
-      "format": "{capacity}% {icon}",
-      "format-charging": "{capacity}% 󰂄",
-      //"format-alt": "{time} {icon}",
-      "format-plugged": "{capacity}% {icon} ",
-      // "format-good": "",
-      "format-full": "100% 󰁹",
-      "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"],
-	    "menu": "on-click",
-	    "menu-file": "$HOME/.config/waybar/menus/power_menu.xml", // Menu file in resources folder
-	    "menu-actions": {
-		  "shutdown": "shutdown now",
-		  "reboot": "shutdown -r now",
-		  "suspend": "systemctl suspend",
-		  "hibernate": "systemctl hibernate",
+    "bat": "BAT0",
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    // Thin Space Character
+    // https://www.compart.com/en/unicode/U+2009
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% 󰂄",
+    //"format-alt": "{time} {icon}",
+    "format-plugged": "{capacity}% {icon} ",
+    // "format-good": "",
+    "format-full": "100% 󰁹",
+    "format-icons": [
+      "󰁺",
+      "󰁼",
+      "󰁾",
+      "󰂀",
+      "󰁹"
+    ],
+    "menu": "on-click",
+    "menu-file": "$HOME/.config/waybar/menus/power_menu.xml", // Menu file in resources folder
+    "menu-actions": {
+      "shutdown": "shutdown now",
+      "reboot": "shutdown -r now",
+      "suspend": "systemctl suspend",
+      "hibernate": "systemctl hibernate",
     }
   },
   "network": {
     "interface": "wlp9s0f0",
-  	"format": "<span font='18' rise='-2100'>{icon}</span>",
-	  "format-ethernet": "{ifname} 󱂺 {icon}",
+    "format": "<span font='18' rise='-2100'>{icon}</span>",
+    "format-ethernet": "{ifname} 󱂺 {icon}",
     //"format-wifi": "{essid} ",
     //"format-linked": "{ifname} (No IP) ",
     "format-disconnected": "<span font='18'>󰤮</span>",
-  	"format-alt": "{essid} <span font='18' rise='-2100'>{icon}</span>",
+    "format-alt": "{essid} <span font='18' rise='-2100'>{icon}</span>",
     //"format-alt": "{essid} <span font='18' rise='-2100'>{icon}</span>",
     "tooltip-format": "{ifname}: {essid}\nip: {ipaddr}/{cidr}",
-    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
   },
   "pulseaudio": {
-      "scroll-step": 0,
-      "format": "<span font='14' rise='-2100'>{icon}</span>\u2009{volume}{format_source}",
-      "format-muted": "<span font='14' rise='-2100'>󰝟</span>\u2009{format_source}",
-      "format-bluetooth": "<span font='14' rise='-2100'>{icon}</span>\u2009{volume}{format_source}",
-      "format-bluetooth-muted": "<span font='14' rise='-2100'>{icon}</span>\u2009{format_source}",
-      "format-source": "<span font='14' rise='0'> 󰍬</span>\u2009{volume}",
-      "format-source-muted": "󰍭",
-      "format-icons": {
-          "headphone": "",
-          "hands-free": "",
-          "headset": "",
-          "phone": "",
-          "portable": "",
-          "car": "",
-          "default": ["󰖁", "󰕿", "󰖀", "󰕾"]
-      },
-      //"on-click": "pavucontrol",
-      "on-click": "~/.config/waybar/scripts/audio_right_click.py",
-      "on-click-middle": "wpctl set-mute @DEFAULT_SINK@ toggle",
-      "on-click-right": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
-      //"on-click-right": "~/.config/waybar/scripts/audio_right_click.py",
-      "on-scroll-up": "wpctl set-volume @DEFAULT_SINK@ 1%+",
-      "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 1%-",
+    "scroll-step": 0,
+    "format": "<span font='14' rise='-2100'>{icon}</span>\u2009{volume}{format_source}",
+    "format-muted": "<span font='14' rise='-2100'>󰝟</span>\u2009{format_source}",
+    "format-bluetooth": "<span font='14' rise='-2100'>{icon}</span>\u2009{volume}{format_source}",
+    "format-bluetooth-muted": "<span font='14' rise='-2100'>{icon}</span>\u2009{format_source}",
+    "format-source": "<span font='14' rise='0'> 󰍬</span>\u2009{volume}",
+    "format-source-muted": "󰍭",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "󰖁",
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ]
+    },
+    //"on-click": "pavucontrol",
+    "on-click": "~/.config/waybar/scripts/audio_right_click.py",
+    "on-click-middle": "wpctl set-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
+    //"on-click-right": "~/.config/waybar/scripts/audio_right_click.py",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_SINK@ 1%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 1%-",
   },
   "custom/vpn": {
-      "format": "<span font='12'>{icon}</span>",
-      "format-icons": ["󰌾", "󱙱"],
-      "exec": "ip l sh tun0 2>/dev/null",
-      "return-type": "bool",
-      "interval": 2
+    "format": "<span font='12'>{icon}</span>",
+    "format-icons": [
+      "󰌾",
+      "󱙱"
+    ],
+    "exec": "ip l sh tun0 2>/dev/null",
+    "return-type": "bool",
+    "interval": 2
   },
   "custom/timer": {
     "exec": "waybar_timer hook",
@@ -116,9 +157,9 @@
     "return-type": "json",
     "format": "<span font='14' rise='-2100'>{icon}</span> {0}",
     "format-icons": {
-        "standby": "󱎫",
-        "running": "󱫠",
-        "paused": "󱫞",
+      "standby": "󱎫",
+      "running": "󱫠",
+      "paused": "󱫞",
     },
     "on-click": "waybar_timer new 25 'notify-send -a \"Waybar Timer\" -u critical \"Timer expired\"'",
     "on-click-middle": "waybar_timer cancel",
@@ -131,8 +172,8 @@
     "return-type": "json",
     "max-length": 40,
     "format-icons": {
-        "spotify": "",
-        "default": "🎜"
+      "spotify": "",
+      "default": "🎜"
     },
     "escape": true,
     //"exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null", // Script in resources folder
@@ -151,6 +192,6 @@
     "return-type": "json",
     "exec": "$HOME/.config/waybar/scripts/bluetooth-power.py",
     "restart-interval": "5",
-    "on-click-right": "hyprctl dispatch exec flatpak run io.github.kaii_lb.Overskride",
+    "on-click-right": "hyprctl dispatch 'hl.dsp.exec_cmd(\"flatpak run io.github.kaii_lb.Overskride\")'"
   }
 }
