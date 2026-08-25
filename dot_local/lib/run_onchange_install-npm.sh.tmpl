@@ -1,0 +1,8 @@
+{{- if eq .hosttype "external-work" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+{{ $path := joinPath .chezmoi.homeDir ".local/opt/npm/bin/npm" -}}
+# npm hash: {{ include $path | sha256sum }}
+brew install npm
+{{ end -}}
+{{- end -}}

@@ -1,22 +1,24 @@
 return {
-  {
-    "prettier/vim-prettier",
-  },
-  vim.filetype.add({
-    pattern = {
-      [".*%.lua%.tmpl"] = "lua",
-      [".*%.toml%.tmpl"] = "toml",
-      [".*%.bash%.tmpl"] = "sh",
-      [".*%.sh%.tmpl"] = "sh",
-      [".*%.rc"] = "sh",
-      ["%.ansible%-lint"] = "yaml.ansible",
-      ["%.ansible%-lint%-ignore"] = "yaml.ansible",
-      [".*%.gitlab%-ci.yml"] = "yaml.gitlab",
-      [".*pipeline%-templates%/templates/.*%.yml"] = "yaml.gitlab",
-      [".*pipeline%-templates%/templates/.*%.yaml"] = "yaml.gitlab",
-      [".*%.yml"] = "yaml.ansible",
-      [".*%.yaml"] = "yaml.ansible",
-      [".*%.j2"] = "jinja",
-    },
-  }),
+	{
+		"prettier/vim-prettier",
+	},
+	vim.filetype.add({
+		pattern = {
+			[".*%.lua%.tmpl"] = "lua",
+			[".*%.toml%.tmpl"] = "toml",
+			[".*%.bash%.tmpl"] = "sh",
+			[".*%.sh%.tmpl"] = "sh",
+			[".*%.rc"] = "sh",
+			["%.ansible%-lint"] = "yaml.ansible",
+			["%.ansible%-lint%-ignore"] = "yaml.ansible",
+			[".*%.gitlab%-ci.yml"] = "yaml.gitlab",
+			[".*pipeline%-templates%/templates/.*%.yml"] = "yaml.gitlab",
+			[".*pipeline%-templates%/templates/.*%.yaml"] = "yaml.gitlab",
+			[".*pipeline%/templates/.*%.yml"] = "yaml.gitlab",
+			[".*pipeline%/templates/.*%.yaml"] = "yaml.gitlab",
+			[".*%.yml"] = "yaml.ansible",
+			[".*%.yaml"] = "yaml.ansible",
+			[".*%.j2"] = "jinja",
+		},
+	}),
 }

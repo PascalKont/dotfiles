@@ -1,0 +1,6 @@
+{{- if eq .hosttype "work" "external-work" "private" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+touch $HOME/.local/lib/npm
+{{ end -}}
+{{- end -}}

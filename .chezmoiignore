@@ -8,7 +8,7 @@
       The if statements can also be interpretet as include statements.
       If os is Linux, then include those dirs, else exclude them (as we are in the exclude file)
 */ -}}
-{{- if ne .chezmoi.os "linux" }}
+{{- if (and (ne .chezmoi.os "linux") (ne .chezmoi.os "darwin")) }}
 .config
 .local
 {{- end }}
@@ -59,7 +59,7 @@
 .config/nvim/lua/plugins/example.lua
 
 {{- /* 
-      This one is not flippen, if hosttype = external-work, then exclude the dirs
+      This one is not flipped, if hosttype = external-work, then exclude the dirs
 */ -}}
 {{- if eq .hosttype "external-work" }}
 .gitignore

@@ -1,4 +1,4 @@
-{{- if eq .hosttype "work" "private" "full" -}}
+{{- if eq .hosttype "work" "external-work" "private" "full" -}}
 {{- if eq .chezmoi.os "linux" -}}
 #!/bin/bash
 {{ $path := joinPath .chezmoi.homeDir ".local/lib/nvim.appimage" -}}
@@ -12,5 +12,11 @@ if [[ $(command -v $path) ]]; then
 fi
 cp $HOME/.local/lib/nvim.appimage $path
 chmod 744 $path
+{{ end -}}
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+{{ $path := joinPath .chezmoi.homeDir ".local/opt/nvim/bin/nvim" -}}
+# nvim hash: {{ include $path | sha256sum }}
+brew install nvim
 {{ end -}}
 {{- end -}}
