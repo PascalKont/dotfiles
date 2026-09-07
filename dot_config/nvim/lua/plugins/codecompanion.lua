@@ -1,4 +1,3 @@
-{{ if eq .hosttype "full" "work" "external-work" "private" }}
 return {
   {
     "olimorris/codecompanion.nvim",
@@ -13,15 +12,39 @@ return {
       "ravitemer/codecompanion-history.nvim",
       "ravitemer/mcphub.nvim",
       "Davidyz/VectorCode",
+      "HakonHarnes/img-clip.nvim",
+      "OXY2DEV/markview.nvim",
+      "MeanderingProgrammer/render-markdown.nvim",
     },
     keys = {
       { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "AI Chat", mode = { "n", "v" } },
       { "<leader>ai", "<cmd>CodeCompanion<cr>", desc = "AI Inline Assistant", mode = { "n", "v" } },
       { "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "AI Actions", mode = { "n", "v" } },
     },
+    opts = {
+      interactions = {
+        chat = {
+          adapter = "anthropic",
+          model = "claude-sonnet-4-20250514",
+        },
+      },
+      -- NOTE: The log_level is in `opts.opts`
+      opts = {
+        log_level = "DEBUG",
+      },
+    },
     config = function()
-      require("codecompanion-history").setup()
+      --require("codecompanion-history").setup()
       require("codecompanion").setup({
+        adapters = {
+          acp = {
+            claude_code = function()
+              return require("codecompanion.adapters").extend("claude_code", {
+                env = { CLAUDE_CODE_OAUTH_TOKEN = "my-oauth-token" },
+              })
+            end,
+          },
+        },
         extensions = {
           mcphub = {
             callback = "mcphub.extensions.codecompanion",
@@ -170,5 +193,30 @@ return {
       })
     end,
   },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "codecompanion" },
+  },
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+    opts = {
+      preview = {
+        filetypes = { "markdown", "codecompanion" },
+        ignore_buftypes = {},
+      },
+    },
+  },
+  {
+    "HakonHarnes/img-clip.nvim",
+    opts = {
+      filetypes = {
+        codecompanion = {
+          prompt_for_file_name = false,
+          template = "[Image]($FILE_PATH)",
+          use_absolute_path = true,
+        },
+      },
+    },
+  },
 }
-{{ end }}
