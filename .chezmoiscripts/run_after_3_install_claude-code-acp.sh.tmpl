@@ -1,0 +1,15 @@
+{{- if eq .hosttype "full" "work" }}
+{{- if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+package='@agentclientprotocol/claude-agent-acp'
+
+if command -v claude-code-acp &>/dev/null; then
+  exit 0
+fi
+
+echo "Installing claude-code-acp via npm..."
+sudo npm install -g "${package}"
+{{- end }}
+{{- end }}

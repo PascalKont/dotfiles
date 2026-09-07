@@ -24,14 +24,21 @@ return {
     vim.o.laststatus = vim.g.lualine_laststatus
 
     local function ai_status()
-      if package.loaded["gemini"] then
-        return "󰚩 Gemini"
-      elseif vim.b.copilot_enabled == false and package.loaded["gitlab"] then
-        return "🦊 Duo"
-      elseif vim.b.copilot_enabled ~= false and vim.g.copilot_enabled ~= false then
-        return "🤖 Copilot"
+      local ok, cc_config = pcall(require, "codecompanion.config")
+      if not ok then
+        return ""
       end
-      return ""
+      local adapter = cc_config.config.interactions.chat.adapter
+      if type(adapter) == "table" then
+        adapter = adapter.name
+      end
+      if not adapter then
+        return ""
+      end
+      local label = adapter:gsub("_", " "):gsub("(%a)(%w*)", function(a, b)
+        return a:upper() .. b
+      end)
+      return "✳ " .. label
     end
 
     require("lualine").setup({
