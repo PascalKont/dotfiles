@@ -41,7 +41,7 @@
 {{- /* 
       If hosttype equals one of the below, only then include the dirs
 */ -}}
-{{- if and (ne .hosttype "full") (ne .hosttype "work") (ne .hosttype "private" )}}
+{{- if and (ne .hosttype "full") (ne .hosttype "work") (ne .hosttype "external-work") (ne .hosttype "private" )}}
 .config/nvim/lua/plugins/codecompanion.lua
 .config/nvim/lua/plugins/codecompanion.lua.tmpl
 .config/nvim/lua/plugins/blink.lua

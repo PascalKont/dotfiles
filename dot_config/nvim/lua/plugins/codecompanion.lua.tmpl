@@ -14,9 +14,62 @@ return {
     },
     keys = {
       { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "AI Chat", mode = { "n", "v" } },
-      { "<leader>ai", "<cmd>CodeCompanion<cr>", desc = "AI Inline Assistant", mode = { "n", "v" } },
+      { "<leader>an", "<cmd>CodeCompanionChat<cr>", desc = "AI New Chat", mode = "n" },
+    
+      { "<leader>ab", "<cmd>%CodeCompanionChat Add<cr>", desc = "AI Add Buffer to Chat", mode = "n" },
+      { "<leader>ab", "<cmd>CodeCompanionChat Add<cr>", desc = "AI Add Selection to Chat", mode = "v" },
+      { "<leader>al", "<cmd>.CodeCompanionChat Add<cr>", desc = "AI Add Current Line to Chat", mode = "n" },
+    
+      { "<leader>ai", "<cmd>%CodeCompanion<cr>", desc = "AI Inline Assistant (current buffer)", mode = "n" },
+      { "<leader>ai", "<cmd>CodeCompanion<cr>", desc = "AI Inline Assistant (selection)", mode = "v" },
+    
+      { "<leader>ae", "<cmd>CodeCompanion Explain this code clearly<cr>", desc = "AI Explain Selection", mode = "v" },
+      { "<leader>af", "<cmd>CodeCompanion Fix this code while preserving its behavior<cr>", desc = "AI Fix Selection", mode = "v" },
+      { "<leader>at", "<cmd>CodeCompanion Generate tests for this code<cr>", desc = "AI Generate Tests", mode = "v" },
+    
+      { "<leader>ap", "<cmd>PasteImage<cr>", desc = "AI Paste Image", mode = "n" },
       { "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "AI Actions", mode = { "n", "v" } },
     },
+{{- if eq .hosttype "external-work" }}
+    opts = {
+      interactions = {
+        chat = {
+          adapter = "ai_gateway",
+          opts = {
+            completion_provider = "blink",
+          },
+        },
+        inline = {
+          adapter = "ai_gateway",
+        },
+      },
+      adapters = {
+        http = {
+          opts = {
+            show_presets = false,
+          },
+          ai_gateway = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = {
+                url = os.getenv("AI_GATEWAY_URL"),
+                api_key = os.getenv("AI_GATEWAY_TOKEN"),
+                chat_url = "/v1/chat/completions",
+              },
+              headers = {
+                ["Content-Type"] = "application/json",
+                ["Authorization"] = "Bearer ${api_key}",
+              },
+              schema = {
+                model = {
+                  default = "gpt-5.6-sol",
+                },
+              },
+            })
+          end,
+        },
+      },
+{{- end }}
+{{- if eq .hosttype "work" }}
     opts = {
       interactions = {
         chat = {
@@ -41,6 +94,7 @@ return {
           end,
         },
       },
+{{- end }}
       extensions = {
         mcphub = {
           callback = "mcphub.extensions.codecompanion",
