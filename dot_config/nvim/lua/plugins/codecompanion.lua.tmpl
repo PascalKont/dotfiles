@@ -7,10 +7,12 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "ravitemer/codecompanion-history.nvim",
       "ravitemer/mcphub.nvim",
-      "Davidyz/VectorCode",
       "HakonHarnes/img-clip.nvim",
       "OXY2DEV/markview.nvim",
       "MeanderingProgrammer/render-markdown.nvim",
+{{- if eq .hosttype "work" }}
+      "Davidyz/VectorCode",
+{{- end }}
     },
     keys = {
       { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "AI Chat", mode = { "n", "v" } },
