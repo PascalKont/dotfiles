@@ -10,6 +10,13 @@
   url = "https://raw.githubusercontent.com/lincheney/fzf-tab-completion/refs/heads/master/bash/fzf-bash-completion.sh"
   refreshPeriod = "168h"
 
+[".local/bin/trashy"]
+  type = "archive-file"
+  url = "https://github.com/oberblastmeister/trashy/releases/download/v2.0.0/trash-x86_64-unknown-linux-gnu.tar.gz"
+  refreshPeriod = "168h"
+  executable = true
+  path = "trash"
+
 {{-   if not (lookPath "node") }}
 [".local/opt/node"]
   type = "archive"
