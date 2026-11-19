@@ -1,7 +1,7 @@
 # -*- conf -*-
 # Gruvbox Dark washed
 
-[colors]
+[colors-dark]
 background=282828
 foreground=ebdbb2
 bright0=282828
@@ -21,7 +21,7 @@ regular5=d3869b
 regular6=8ec07c
 regular7=ebdbb2
 
-[colors2]
+[colors-light]
 background=fbf1c7
 foreground=3c3836
 regular0=fbf1c7
