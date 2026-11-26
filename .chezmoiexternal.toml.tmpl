@@ -50,6 +50,19 @@
   exact = true
   refreshPeriod = "672h"
   include = ["**/main.py"]
+
+[".local/opt/element-desktop"]
+  type = "archive"
+  url = "https://packages.element.io/desktop/install/linux/glibc-x86-64/element-desktop.tar.gz"
+  stripComponents = 1
+  exact = true
+  refreshPeriod = "672h"
+
+[".local/opt/element-desktop-icon.svg"]
+  type = "file"
+  url = "https://element.io/assets-32bb636196f91ed59d7a49190e26b42c/5ef25c0d30ee3108da4c25e9/5f365d3197194f8c73b00112_logo-mark-primary.svg"
+  refreshPeriod = "672h"
+  
 {{      end }}
   
 {{    end }}

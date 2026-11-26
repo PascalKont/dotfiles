@@ -10,6 +10,8 @@ inode/directory=thunar.desktop
 application/x-wayland-gnome-saved-search=thunar.desktop
 image/png=org.gnome.Loupe.desktop
 x-scheme-handler/claude-cli=claude-code-url-handler.desktop
+x-scheme-handler/io.element.desktop=element-desktop.desktop
+x-scheme-handler/element=element-desktop.desktop
 
 [Added Associations]
 image/png=org.gnome.Loupe.desktop;
